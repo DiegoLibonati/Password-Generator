@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Password Generator</title>
+
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&family=Roboto:wght@100&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/41faca984e.js" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+    <section  class="section_container">
+
+        <div class="section_container_main">
+
+            <div class="section_container_main-text">
+                <input type="text" id="showPassword"></input>
+            </div>
+
+            <div class="section_container_main-options">
+
+                <label id="labelText">Password Length</label>
+                <input type="text" id="inputText">
+                
+                <label>Contain Uppercase Letters</label>
+                <input type="checkbox" class="checkboxClass" value="off"  id="checkBoxUpper">
+                
+                <label>Contain Lowercase Letters</label>
+                <input type="checkbox" class="checkboxClass" value="off" id="checkBoxLower">
+                
+                <label>Contain Numbers</label>
+                <input type="checkbox" class="checkboxClass" value="off" id="checkBoxNumbers">
+                
+                <label>Contain Symbols</label>
+                <input type="checkbox" class="checkboxClass" value="off" id="checkBoxSymbols">
+                
+            </div>
+
+            
+            <div class="section_container_main-button">
+                <button type="button" id="btnGeneratePassword">Generate Password</button>
+            </div>
+        </div>
+
+    </section>
+
+    <script src="codigo.js"></script>
+</body>
+</html>
+
