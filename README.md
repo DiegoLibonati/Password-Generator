@@ -41,7 +41,124 @@ I made a web page that allows the user to generate a random password. From this 
 
 ## Video
 
-
-
 https://user-images.githubusercontent.com/99032604/199619042-c6829033-0643-4860-b194-438012d467c9.mp4
 
+## Documentation
+
+The `randomSelectNumberForArrays()` function will pick a random number from an array so we can use that number as an index and extract some data from any array:
+
+```
+const randomSelectNumberForArrays = (array) => {
+  const randomNumber = Math.floor(Math.random() * array.length);
+
+  return randomNumber;
+};
+```
+
+The `createPassword()` function will create a password depending on the options that the user has chosen, as well as respecting the length that the user also wants:
+
+```
+const createPassword = () => {
+  allArrays = [];
+  const inputTextValue = parseInt(inputText.value);
+
+  if (newPassword.length >= inputTextValue) {
+    console.log("Nueva contraseña generada con exito");
+  } else {
+    if (
+      checkBoxUpper.checked &&
+      upperWasUsed == false &&
+      newPassword.length < inputTextValue
+    ) {
+      newPassword += generateCharacter(allUpperCaseLetters);
+      upperWasUsed = true;
+      lowerWasUsed = false;
+      numberWasUsed = false;
+      symbolsWasUsed = false;
+    }
+    if (
+      checkBoxLower.checked &&
+      lowerWasUsed == false &&
+      newPassword.length < inputTextValue
+    ) {
+      newPassword += generateCharacter(allLowerCaseLetters);
+      upperWasUsed = true;
+      lowerWasUsed = true;
+      numberWasUsed = false;
+      symbolsWasUsed = false;
+    }
+    if (
+      checkBoxNumbers.checked &&
+      numberWasUsed == false &&
+      newPassword.length < inputTextValue
+    ) {
+      newPassword += generateCharacter(allNumbers);
+      upperWasUsed = true;
+      lowerWasUsed = true;
+      numberWasUsed = true;
+      symbolsWasUsed = false;
+    }
+    if (
+      checkBoxSymbols.checked &&
+      symbolsWasUsed == false &&
+      newPassword.length < inputTextValue
+    ) {
+      newPassword += generateCharacter(allSymbols);
+      upperWasUsed = true;
+      lowerWasUsed = true;
+      numberWasUsed = true;
+      symbolsWasUsed = true;
+    }
+  }
+
+  upperWasUsed = false;
+  lowerWasUsed = false;
+  numberWasUsed = false;
+  symbolsWasUsed = false;
+
+  return sortFinalPassword(newPassword);
+};
+```
+
+The `generateCharacter()` function is in charge of grabbing some data from any array:
+
+```
+const generateCharacter = (array) => {
+  const randomNumber = randomSelectNumberForArrays(array);
+
+  const newCharacter = array[randomNumber];
+
+  return newCharacter;
+};
+```
+
+This function `sortFinalPassword()` is in charge of mixing the generated password to make it more random:
+
+```
+const sortFinalPassword = (password) => {
+  const newPasswordArray = Array.from(password);
+
+  const finalNewPassword = newPasswordArray
+    .sort((a, b) => 0.5 - Math.random())
+    .toString()
+    .split(",")
+    .join("");
+
+  return finalNewPassword;
+};
+```
+
+The `copyText()` function is used to copy the password to the clipboard:
+
+```
+const copyText = () => {
+  const showPassword = document.getElementById("showPassword");
+
+  showPassword.select();
+  showPassword.setSelectionRange(0, 99999);
+
+  navigator.clipboard.writeText(showPassword.value);
+
+  alert(`Copied the text: ${showPassword.value}`);
+};
+```

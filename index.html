@@ -19,40 +19,42 @@
 </head>
 <body>
 
-    <section  class="section_container">
+    <main class="main_container">
+        <section  class="section_container">
 
-        <div class="section_container_main">
+            <article class="section_container_main">
 
-            <div class="section_container_main-text">
-                <input type="text" id="showPassword"></input>
-            </div>
+                <div class="section_container_main-text">
+                    <input type="text" id="showPassword"></input>
+                </div>
 
-            <div class="section_container_main-options">
+                <div class="section_container_main-options">
 
-                <label id="labelText">Password Length</label>
-                <input type="text" id="inputText">
+                    <label id="labelText">Password Length</label>
+                    <input type="text" id="inputText">
+                    
+                    <label>Contain Uppercase Letters</label>
+                    <input type="checkbox" class="checkboxClass" value="off"  id="checkBoxUpper">
+                    
+                    <label>Contain Lowercase Letters</label>
+                    <input type="checkbox" class="checkboxClass" value="off" id="checkBoxLower">
+                    
+                    <label>Contain Numbers</label>
+                    <input type="checkbox" class="checkboxClass" value="off" id="checkBoxNumbers">
+                    
+                    <label>Contain Symbols</label>
+                    <input type="checkbox" class="checkboxClass" value="off" id="checkBoxSymbols">
+                    
+                </div>
+
                 
-                <label>Contain Uppercase Letters</label>
-                <input type="checkbox" class="checkboxClass" value="off"  id="checkBoxUpper">
-                
-                <label>Contain Lowercase Letters</label>
-                <input type="checkbox" class="checkboxClass" value="off" id="checkBoxLower">
-                
-                <label>Contain Numbers</label>
-                <input type="checkbox" class="checkboxClass" value="off" id="checkBoxNumbers">
-                
-                <label>Contain Symbols</label>
-                <input type="checkbox" class="checkboxClass" value="off" id="checkBoxSymbols">
-                
-            </div>
+                <div class="section_container_main-button">
+                    <button type="button" id="btnGeneratePassword">Generate Password</button>
+                </div>
+            </article>
 
-            
-            <div class="section_container_main-button">
-                <button type="button" id="btnGeneratePassword">Generate Password</button>
-            </div>
-        </div>
-
-    </section>
+        </section>
+    </main>
 
     <script src="codigo.js"></script>
 </body>
