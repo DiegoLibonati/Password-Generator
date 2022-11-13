@@ -37,7 +37,7 @@ I made a web page that allows the user to generate a random password. From this 
 
 ## Portfolio Link
 
-`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Password%20generator%20page`
+`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Password%20Generator%20Page`
 
 ## Video
 
