@@ -23,21 +23,9 @@ I made a web page that allows the user to generate a random password. From this 
 2. CSS3
 3. HTML5
 
-## Galery
-
-![password-generator-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/password-0.jpg)
-
-![password-generator-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/password-1.jpg)
-
-![password-generator-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/password-2.jpg)
-
-![password-generator-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/password-3.jpg)
-
-![password-generator-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/password-4.jpg)
-
 ## Portfolio Link
 
-`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Password%20Generator%20Page`
+[`https://www.diegolibonati.com.ar/#/project/32`](https://www.diegolibonati.com.ar/#/project/32)
 
 ## Video
 
