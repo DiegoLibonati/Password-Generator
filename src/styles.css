@@ -56,11 +56,13 @@ body {
 
 .section_container_main-text input {
   font-size: 2rem;
+  width: 80%;
   color: #fff;
   background-color: #030e4f;
   border: none;
   resize: none;
   outline: none;
+  cursor: pointer;
 }
 
 .section_container_main-options {
@@ -116,6 +118,7 @@ body {
   font-size: 2.5rem;
   color: #fff;
   background-color: #030e4f;
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 1024px) {
