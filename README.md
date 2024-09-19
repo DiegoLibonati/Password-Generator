@@ -1,4 +1,4 @@
-# Password-Generator-Page
+# Password Generator
 
 ## Getting Started
 
@@ -32,7 +32,7 @@ I made a web page that allows the user to generate a random password. From this 
 
 ## Portfolio Link
 
-[`https://www.diegolibonati.com.ar/#/project/32`](https://www.diegolibonati.com.ar/#/project/32)
+[`https://www.diegolibonati.com.ar/#/project/Password-Generator`](https://www.diegolibonati.com.ar/#/project/Password-Generator)
 
 ## Video
 
