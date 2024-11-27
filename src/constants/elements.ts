@@ -1,7 +1,7 @@
-export const inputText = document.getElementById("inputText") as HTMLInputElement;
-export const showPassword = document.getElementById(
-  "showPassword"
+export const inputText = document.getElementById(
+  "inputText"
 ) as HTMLInputElement;
+export const inputTextLength = document.getElementById("inputTextLength") as HTMLInputElement;
 export const checkBoxUpper = document.getElementById(
   "checkBoxUpper"
 ) as HTMLInputElement;

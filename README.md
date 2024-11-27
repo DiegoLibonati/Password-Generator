@@ -4,21 +4,8 @@
 
 1. Clone the repository
 2. Join to the correct path of the clone
-3. Install LiveServer extension from Visual Studio Code [OPTIONAL]
-4. Click in "Go Live" from LiveServer extension
-
----
-
-1. Clone the repository
-2. Join to the correct path of the clone
-3. Open index.html in your favorite navigator
-
----
-
-1. Clone the repository
-2. Join to the correct path of the clone
-3. Execute: `yarn install`
-4. Execute: `yarn dev`
+3. Execute: `yarn install` or `npm install`
+4. Execute: `yarn dev` or `npm dev`
 
 ## Description
 
@@ -30,6 +17,28 @@ I made a web page that allows the user to generate a random password. From this 
 2. CSS3
 3. HTML5
 
+## Libraries used
+
+#### Dependencies
+
+```
+"@types/jest": "^29.5.14"
+```
+
+#### devDependencies
+
+```
+"@testing-library/dom": "^10.4.0"
+"@testing-library/jest-dom": "^6.6.3"
+"@testing-library/user-event": "^14.5.2"
+"jest": "^29.7.0"
+"jest-environment-jsdom": "^29.7.0"
+"ts-jest": "^29.2.5"
+"jest-fixed-jsdom": "^0.0.9"
+"typescript": "^5.2.2"
+"vite": "^5.0.8"
+```
+
 ## Portfolio Link
 
 [`https://www.diegolibonati.com.ar/#/project/Password-Generator`](https://www.diegolibonati.com.ar/#/project/Password-Generator)
@@ -38,56 +47,7 @@ I made a web page that allows the user to generate a random password. From this 
 
 https://user-images.githubusercontent.com/99032604/199619042-c6829033-0643-4860-b194-438012d467c9.mp4
 
-## Documentation
+## Testing
 
-The `getRandomIndex()` function will pick a random number from an array so we can use that number as an index and extract some data from any array:
-
-```
-const getRandomIndex = (array: string[]) => {
-  const randomNumber = Math.floor(Math.random() * array.length);
-
-  return randomNumber;
-};
-```
-
-The `copyText()` function is used to copy the password to the clipboard:
-
-```
-const copyText = () => {
-  const showPassword = document.getElementById("showPassword");
-
-  showPassword.select();
-  showPassword.setSelectionRange(0, 99999);
-
-  navigator.clipboard.writeText(showPassword.value);
-
-  alert(`Copied the text: ${showPassword.value}`);
-};
-```
-
-The `addeventlistener` of generate password button:
-
-```
-btnGeneratePassword.addEventListener("click", () => {
-  let characters: string[] = [];
-
-  checkBoxUpper.checked && characters.push(...allUpperCaseLetters);
-  checkBoxLower.checked && characters.push(...allLowerCaseLetters);
-  checkBoxNumbers.checked && characters.push(...allNumbers);
-  checkBoxSymbols.checked && characters.push(...allSymbols);
-
-  if (characters.length === 0) return (showPassword.value = "Use any check");
-
-  newPassword = "";
-
-  const passwordLength = parseInt(inputText.value);
-
-  for (let i = 0; i < passwordLength; i++) {
-    const index = getRandomIndex(characters);
-
-    newPassword += characters[index];
-  }
-
-  showPassword.value = newPassword;
-});
-```
+1. Join to the correct path of the clone
+2. Execute: `yarn test` or `npm test`

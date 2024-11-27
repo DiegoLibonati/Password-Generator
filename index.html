@@ -25,15 +25,15 @@
             <article class="section_container_main">
 
                 <div class="section_container_main-text">
-                    <input type="text" id="showPassword"></input>
+                    <input type="text" id="inputText"></input>
                 </div>
 
                 <div class="section_container_main-options">
 
-                    <label id="labelText">Password Length</label>
-                    <input type="number" id="inputText">
+                    <label for="inputTextLength" id="labelText">Password Length</label>
+                    <input type="number" id="inputTextLength">
                     
-                    <label>Contain Uppercase Letters</label>
+                    <label for="checkBoxUpper">Contain Uppercase Letters</label>
                     <input type="checkbox" class="checkboxClass" value="off"  id="checkBoxUpper">
                     
                     <label>Contain Lowercase Letters</label>
@@ -49,14 +49,14 @@
 
                 
                 <div class="section_container_main-button">
-                    <button type="button" id="btnGeneratePassword">Generate Password</button>
+                    <button type="button" id="btnGeneratePassword" aria-label="generate password">Generate Password</button>
                 </div>
             </article>
 
         </section>
     </main>
 
-    <script type="module" src="./src/script.ts"></script>
+    <script type="module" src="./src/index.ts"></script>
 </body>
 </html>
 
