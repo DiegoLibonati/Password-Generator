@@ -4,8 +4,6 @@ import user from "@testing-library/user-event";
 import { OFFICIAL_BODY } from "./tests/jest.setup";
 
 beforeEach(() => {
-  jest.resetModules();
-
   document.body.innerHTML = OFFICIAL_BODY;
 
   require("./index.ts");
