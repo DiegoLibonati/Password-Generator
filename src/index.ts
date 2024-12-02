@@ -1,21 +1,22 @@
 import { getRandomIndex } from "./helpers/getRandomIndex";
+import { getElements } from "./helpers/getElements";
 import {
   allLowerCaseLetters,
   allNumbers,
   allSymbols,
   allUpperCaseLetters,
 } from "./constants/constants";
-import {
-  btnGeneratePassword,
-  checkBoxLower,
-  checkBoxNumbers,
-  checkBoxSymbols,
-  checkBoxUpper,
-  inputText,
-  inputTextLength,
-} from "./constants/elements";
 
 const handleGeneratePassword = () => {
+  const {
+    checkBoxLower,
+    checkBoxNumbers,
+    checkBoxSymbols,
+    checkBoxUpper,
+    inputTextLength,
+    inputText,
+  } = getElements();
+
   const characters: string[] = [];
   let newPassword: string = "";
 
@@ -38,6 +39,8 @@ const handleGeneratePassword = () => {
 };
 
 const copyText = () => {
+  const { inputText } = getElements();
+
   inputText.select();
   inputText.setSelectionRange(0, 99999);
 
@@ -47,6 +50,8 @@ const copyText = () => {
 };
 
 const onInit = () => {
+  const { btnGeneratePassword, inputText } = getElements();
+
   btnGeneratePassword.addEventListener("click", handleGeneratePassword);
   inputText.addEventListener("click", copyText);
 };
