@@ -7,6 +7,7 @@
 
     <title>Password Generator</title>
 
+    <link rel="stylesheet" type="text/css" href="./src/index.css">
     <link rel="stylesheet" type="text/css" href="./src/styles.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,36 +20,36 @@
 </head>
 <body>
 
-    <main class="main_container">
-        <section  class="section_container">
+    <main class="main">
+        <section  class="section">
 
-            <article class="section_container_main">
+            <article class="card">
 
-                <div class="section_container_main-text">
+                <div class="card__insert">
                     <input type="text" id="inputText"></input>
                 </div>
 
-                <div class="section_container_main-options">
+                <div class="card__options">
 
                     <label for="inputTextLength" id="labelText">Password Length</label>
                     <input type="number" id="inputTextLength">
                     
                     <label for="checkBoxUpper">Contain Uppercase Letters</label>
-                    <input type="checkbox" class="checkboxClass" value="off"  id="checkBoxUpper">
+                    <input type="checkbox" class="card__checkbox" value="off"  id="checkBoxUpper">
                     
                     <label>Contain Lowercase Letters</label>
-                    <input type="checkbox" class="checkboxClass" value="off" id="checkBoxLower">
+                    <input type="checkbox" class="card__checkbox" value="off" id="checkBoxLower">
                     
                     <label>Contain Numbers</label>
-                    <input type="checkbox" class="checkboxClass" value="off" id="checkBoxNumbers">
+                    <input type="checkbox" class="card__checkbox" value="off" id="checkBoxNumbers">
                     
                     <label>Contain Symbols</label>
-                    <input type="checkbox" class="checkboxClass" value="off" id="checkBoxSymbols">
+                    <input type="checkbox" class="card__checkbox" value="off" id="checkBoxSymbols">
                     
                 </div>
 
                 
-                <div class="section_container_main-button">
+                <div class="card__btns">
                     <button type="button" id="btnGeneratePassword" aria-label="generate password">Generate Password</button>
                 </div>
             </article>

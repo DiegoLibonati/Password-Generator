@@ -1,24 +1,4 @@
-* {
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-  font-size: 10px;
-  list-style: none;
-  font-family: "Roboto Condensed", sans-serif;
-  overflow-x: hidden;
-}
-
-img {
-  max-width: 100%;
-}
-
-body {
-  width: 100vw;
-  height: 100vh;
-  background: #030e4f;
-}
-
-.main_container {
+.main {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,7 +6,7 @@ body {
   height: 100%;
 }
 
-.section_container {
+.section {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,38 +14,38 @@ body {
   height: 50rem;
 }
 
-.section_container_main {
+.card {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
   width: 80%;
   height: 30rem;
-  background-color: #f49f1c;
+  background-color: var(--secondary-color);
 }
 
-.section_container_main-text {
+.card__insert {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 90%;
   height: 5rem;
   margin-bottom: 1rem;
-  background: #030e4f;
+  background: var(--primary-color);
 }
 
-.section_container_main-text input {
+.card__insert input {
   font-size: 2rem;
   width: 80%;
-  color: #fff;
-  background-color: #030e4f;
+  color: var(--white-color);
+  background-color: var(--primary-color);
   border: none;
   resize: none;
   outline: none;
   cursor: pointer;
 }
 
-.section_container_main-options {
+.card__options {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -74,16 +54,16 @@ body {
   height: 15rem;
 }
 
-.section_container_main-options label {
+.card__options label {
   display: flex;
   align-items: center;
   height: 3rem;
   width: 90%;
   font-size: 1.5rem;
-  color: #fff;
+  color: var(--white-color);
 }
 
-.section_container_main-options input {
+.card__options input {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -101,7 +81,7 @@ body {
   width: 70%;
 }
 
-.section_container_main-button {
+.card__btns {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,14 +90,14 @@ body {
   margin-top: 1rem;
 }
 
-.section_container_main-button button {
+.card__btns button {
   height: 5rem;
   background: none;
   border: none;
   padding: 1rem;
   font-size: 2.5rem;
-  color: #fff;
-  background-color: #030e4f;
+  color: var(--white-color);
+  background-color: var(--primary-color);
   cursor: pointer;
 }
 
@@ -130,19 +110,19 @@ body {
     height: 100vh;
   }
 
-  .section_container {
+  .section {
     height: 30rem;
   }
 
-  .section_container_main {
+  .card {
     width: 30%;
   }
 
-  .section_container_main-options input {
+  .card__options input {
     cursor: pointer;
   }
 
-  .section_container_main-button button {
+  .card__btns button {
     cursor: pointer;
   }
 }
