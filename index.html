@@ -20,37 +20,37 @@
 </head>
 <body>
 
-    <main class="main">
-        <section  class="section">
+    <main class="main-app">
+        <section class="content-wrapper">
 
-            <article class="card">
+            <article class="content-wrapper__card">
 
-                <div class="card__insert">
-                    <input type="text" id="inputText"></input>
+                <div class="content-wrapper__card-insert">
+                    <input type="text" id="inputText" class="content-wrapper__card-insert-input"></input>
                 </div>
 
-                <div class="card__options">
+                <div class="content-wrapper__card-options">
 
-                    <label for="inputTextLength" id="labelText">Password Length</label>
-                    <input type="number" id="inputTextLength">
+                    <label for="inputTextLength" id="labelText" class="content-wrapper__card-options-label content-wrapper__card-options-label-password">Password Length</label>
+                    <input type="number" id="inputTextLength" class="content-wrapper__card-options-input">
                     
-                    <label for="checkBoxUpper">Contain Uppercase Letters</label>
-                    <input type="checkbox" class="card__checkbox" value="off"  id="checkBoxUpper">
+                    <label for="checkBoxUpper" class="content-wrapper__card-options-label">Contain Uppercase Letters</label>
+                    <input type="checkbox" class="content-wrapper__card-options-check" value="off"  id="checkBoxUpper">
                     
-                    <label>Contain Lowercase Letters</label>
-                    <input type="checkbox" class="card__checkbox" value="off" id="checkBoxLower">
+                    <label class="content-wrapper__card-options-label">Contain Lowercase Letters</label>
+                    <input type="checkbox" class="content-wrapper__card-options-check" value="off" id="checkBoxLower">
                     
-                    <label>Contain Numbers</label>
-                    <input type="checkbox" class="card__checkbox" value="off" id="checkBoxNumbers">
+                    <label class="content-wrapper__card-options-label">Contain Numbers</label>
+                    <input type="checkbox" class="content-wrapper__card-options-check" value="off" id="checkBoxNumbers">
                     
-                    <label>Contain Symbols</label>
-                    <input type="checkbox" class="card__checkbox" value="off" id="checkBoxSymbols">
+                    <label class="content-wrapper__card-options-label">Contain Symbols</label>
+                    <input type="checkbox" class="content-wrapper__card-options-check" value="off" id="checkBoxSymbols">
                     
                 </div>
 
                 
-                <div class="card__btns">
-                    <button type="button" id="btnGeneratePassword" aria-label="generate password">Generate Password</button>
+                <div class="content-wrapper__card-btns">
+                    <button type="button" id="btnGeneratePassword" aria-label="generate password" class="content-wrapper__card-btns-generate-password">Generate Password</button>
                 </div>
             </article>
 

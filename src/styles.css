@@ -1,4 +1,4 @@
-.main {
+.main-app {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6,7 +6,7 @@
   height: 100%;
 }
 
-.section {
+.content-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,7 @@
   height: 50rem;
 }
 
-.card {
+.content-wrapper__card {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -24,7 +24,7 @@
   background-color: var(--secondary-color);
 }
 
-.card__insert {
+.content-wrapper__card-insert {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,7 +34,7 @@
   background: var(--primary-color);
 }
 
-.card__insert input {
+.content-wrapper__card-insert-input {
   font-size: 2rem;
   width: 80%;
   color: var(--white-color);
@@ -45,7 +45,7 @@
   cursor: pointer;
 }
 
-.card__options {
+.content-wrapper__card-options {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -54,7 +54,7 @@
   height: 15rem;
 }
 
-.card__options label {
+.content-wrapper__card-options-label {
   display: flex;
   align-items: center;
   height: 3rem;
@@ -63,7 +63,22 @@
   color: var(--white-color);
 }
 
-.card__options input {
+.content-wrapper__card-options-label-password {
+  width: 70%;
+}
+
+.content-wrapper__card-options-input {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 2rem;
+  width: 30%;
+  padding: 0.1rem;
+  font-size: 1.5rem;
+  outline: none;
+}
+
+.content-wrapper__card-options-check {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -73,15 +88,7 @@
   outline: none;
 }
 
-#inputTextLength {
-  width: 30%;
-}
-
-#labelText {
-  width: 70%;
-}
-
-.card__btns {
+.content-wrapper__card-btns {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,7 +97,7 @@
   margin-top: 1rem;
 }
 
-.card__btns button {
+.content-wrapper__card-btns-generate-password {
   height: 5rem;
   background: none;
   border: none;
@@ -102,27 +109,19 @@
 }
 
 @media only screen and (min-width: 1024px) {
-  body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-  }
-
-  .section {
+  .content-wrapper {
     height: 30rem;
   }
 
-  .card {
+  .content-wrapper__card {
     width: 30%;
   }
 
-  .card__options input {
+  .content-wrapper__card-insert-input {
     cursor: pointer;
   }
 
-  .card__btns button {
+  .content-wrapper__card-btns-generate-password {
     cursor: pointer;
   }
 }
