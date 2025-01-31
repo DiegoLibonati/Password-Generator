@@ -6,7 +6,7 @@
   height: 100%;
 }
 
-.content-wrapper {
+.card-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,7 @@
   height: 50rem;
 }
 
-.content-wrapper__card {
+.card {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -24,7 +24,7 @@
   background-color: var(--secondary-color);
 }
 
-.content-wrapper__card-insert {
+.card__form {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,7 +34,7 @@
   background: var(--primary-color);
 }
 
-.content-wrapper__card-insert-input {
+.card__form-input {
   font-size: 2rem;
   width: 80%;
   color: var(--white-color);
@@ -45,7 +45,7 @@
   cursor: pointer;
 }
 
-.content-wrapper__card-options {
+.card__options {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -54,7 +54,7 @@
   height: 15rem;
 }
 
-.content-wrapper__card-options-label {
+.card__options-label {
   display: flex;
   align-items: center;
   height: 3rem;
@@ -63,11 +63,11 @@
   color: var(--white-color);
 }
 
-.content-wrapper__card-options-label-password {
+.card__options-label-password {
   width: 70%;
 }
 
-.content-wrapper__card-options-input {
+.card__options-input {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -78,7 +78,7 @@
   outline: none;
 }
 
-.content-wrapper__card-options-check {
+.card__options-check {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -88,7 +88,7 @@
   outline: none;
 }
 
-.content-wrapper__card-btns {
+.card__btns {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,7 +97,7 @@
   margin-top: 1rem;
 }
 
-.content-wrapper__card-btns-generate-password {
+.card__btn-generate-password {
   height: 5rem;
   background: none;
   border: none;
@@ -109,19 +109,19 @@
 }
 
 @media only screen and (min-width: 1024px) {
-  .content-wrapper {
+  .card-wrapper {
     height: 30rem;
   }
 
-  .content-wrapper__card {
+  .card {
     width: 30%;
   }
 
-  .content-wrapper__card-insert-input {
+  .card__form-input {
     cursor: pointer;
   }
 
-  .content-wrapper__card-btns-generate-password {
+  .card__btn-generate-password {
     cursor: pointer;
   }
 }
