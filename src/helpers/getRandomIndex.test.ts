@@ -1,4 +1,4 @@
-import { getRandomIndex } from "./getRandomIndex";
+import { getRandomIndex } from "@src/helpers/getRandomIndex";
 
 describe("getRandomIndex.ts", () => {
   describe("General Tests.", () => {

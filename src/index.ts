@@ -1,11 +1,11 @@
-import { getRandomIndex } from "./helpers/getRandomIndex";
-import { getElements } from "./helpers/getElements";
+import { getRandomIndex } from "@src/helpers/getRandomIndex";
+import { getElements } from "@src/helpers/getElements";
 import {
   allLowerCaseLetters,
   allNumbers,
   allSymbols,
   allUpperCaseLetters,
-} from "./constants/constants";
+} from "@src/constants/constants";
 
 const handleGeneratePassword = () => {
   const {
