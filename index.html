@@ -1,78 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Password Generator</title>
 
-    <meta name="description" content="Generate your next secure password randomly." />
+    <meta
+      name="description"
+      content="Generate your next secure password randomly."
+    />
     <meta name="keywords" content="Password generator, Generator, Password" />
     <meta name="author" content="Diego Libonati" />
 
     <meta property="og:title" content="Password Generator" />
-    <meta property="og:description" content="Generate your next secure password randomly." />
+    <meta
+      property="og:description"
+      content="Generate your next secure password randomly."
+    />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://your-site.com" />
     <!-- <meta property="og:image" content="/logo192.png" /> -->
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Password Generator" />
-    <meta name="twitter:description" content="Generate your next secure password randomly." />
+    <meta
+      name="twitter:description"
+      content="Generate your next secure password randomly."
+    />
     <!-- <meta name="twitter:image" content="/logo192.png" /> -->
     <meta name="twitter:creator" content="@your-user" />
 
     <!-- <link rel="apple-touch-icon" href="/logo192.png" /> -->
     <!-- <link rel="manifest" href="/manifest.json" /> -->
 
-    <link rel="stylesheet" type="text/css" href="./src/index.css">
-    <link rel="stylesheet" type="text/css" href="./src/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&family=Roboto:wght@100&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/41faca984e.js" crossorigin="anonymous"></script>
-</head>
-<body>
-
-    <main class="main-app">
-        <section class="card-wrapper">
-
-            <article class="card">
-
-                <form class="card__form">
-                    <input type="text" id="inputText" class="card__form-input"></input>
-                </form>
-
-                <div class="card__options">
-
-                    <label for="inputTextLength" id="labelText" class="card__options-label card__options-label-password">Password Length</label>
-                    <input type="number" id="inputTextLength" class="card__options-input">
-                    
-                    <label for="checkBoxUpper" class="card__options-label">Contain Uppercase Letters</label>
-                    <input type="checkbox" class="card__options-check" value="off"  id="checkBoxUpper">
-                    
-                    <label class="card__options-label">Contain Lowercase Letters</label>
-                    <input type="checkbox" class="card__options-check" value="off" id="checkBoxLower">
-                    
-                    <label class="card__options-label">Contain Numbers</label>
-                    <input type="checkbox" class="card__options-check" value="off" id="checkBoxNumbers">
-                    
-                    <label class="card__options-label">Contain Symbols</label>
-                    <input type="checkbox" class="card__options-check" value="off" id="checkBoxSymbols">
-                    
-                </div>
-
-                
-                <div class="card__btns">
-                    <button type="button" id="btnGeneratePassword" aria-label="generate password" class="card__btn-generate-password">Generate Password</button>
-                </div>
-            </article>
-
-        </section>
-    </main>
-
-    <script type="module" src="./src/index.ts"></script>
-</body>
+    <link rel="stylesheet" type="text/css" href="./src/index.css" />
+    <link rel="stylesheet" type="text/css" href="./src/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/41faca984e.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/index.ts"></script>
+  </body>
 </html>
-

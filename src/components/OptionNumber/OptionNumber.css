@@ -1,0 +1,27 @@
+.option-number {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+}
+
+.option-number__label {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  width: 90%;
+  font-size: 1.5rem;
+  color: var(--white-color);
+}
+
+.option-number__input {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 2rem;
+  padding: 0.1rem;
+  font-size: 1.5rem;
+  outline: none;
+}
