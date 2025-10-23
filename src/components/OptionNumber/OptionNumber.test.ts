@@ -54,7 +54,7 @@ describe("OptionNumber.ts", () => {
       renderComponent(props);
 
       const label = screen.getByText("Test Label");
-      const input = document.getElementById("test-number");
+      const input = document.querySelector<HTMLInputElement>("#test-number");
 
       expect(label).toBeInTheDocument();
       expect(input).toBeInTheDocument();
@@ -68,8 +68,12 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(".option-number__label");
-      const input = document.querySelector(".option-number__input");
+      const label = document.querySelector<HTMLLabelElement>(
+        ".option-number__label"
+      );
+      const input = document.querySelector<HTMLInputElement>(
+        ".option-number__input"
+      );
 
       expect(label).toBeInTheDocument();
       expect(input).toBeInTheDocument();
@@ -99,7 +103,7 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const input = document.getElementById("unique-id");
+      const input = document.querySelector<HTMLInputElement>("#unique-id");
 
       expect(input).toBeInTheDocument();
       expect(input?.id).toBe("unique-id");
@@ -113,12 +117,12 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(
+      const label = document.querySelector<HTMLLabelElement>(
         ".option-number__label"
-      ) as HTMLLabelElement;
+      );
 
-      expect(label.htmlFor).toBe("linked-input");
-      expect(label.getAttribute("for")).toBe("linked-input");
+      expect(label!.htmlFor).toBe("linked-input");
+      expect(label!.getAttribute("for")).toBe("linked-input");
     });
 
     test("It should render input with correct type", () => {
@@ -129,9 +133,9 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const input = document.getElementById("type-number") as HTMLInputElement;
+      const input = document.querySelector<HTMLInputElement>("#type-number");
 
-      expect(input.type).toBe("number");
+      expect(input!.type).toBe("number");
     });
   });
 
@@ -212,7 +216,9 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(".option-number__label");
+      const label = document.querySelector<HTMLLabelElement>(
+        ".option-number__label"
+      );
 
       expect(label).toHaveClass("option-number__label");
       expect(label?.className).toBe("option-number__label ");
@@ -227,7 +233,9 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(".option-number__label");
+      const label = document.querySelector<HTMLLabelElement>(
+        ".option-number__label"
+      );
 
       expect(label).toHaveClass("option-number__label");
       expect(label).toHaveClass("custom-label-class");
@@ -242,7 +250,9 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(".option-number__label");
+      const label = document.querySelector<HTMLLabelElement>(
+        ".option-number__label"
+      );
 
       expect(label).toHaveClass("option-number__label");
       expect(label).toHaveClass("label-class-one");
@@ -258,7 +268,9 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(".option-number__label");
+      const label = document.querySelector<HTMLLabelElement>(
+        ".option-number__label"
+      );
 
       expect(label).toHaveClass("option-number__label");
       expect(label?.className).toBe("option-number__label ");
@@ -273,7 +285,9 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(".option-number__label");
+      const label = document.querySelector<HTMLLabelElement>(
+        ".option-number__label"
+      );
 
       expect(label).toHaveClass("option-number__label");
       expect(label?.className).toBe("option-number__label ");
@@ -287,7 +301,9 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(".option-number__label");
+      const label = document.querySelector<HTMLLabelElement>(
+        ".option-number__label"
+      );
 
       expect(label?.className).toContain("option-number__label");
     });
@@ -303,7 +319,9 @@ describe("OptionNumber.ts", () => {
       };
 
       const { container } = renderComponent(props);
-      const label = document.querySelector(".option-number__label");
+      const label = document.querySelector<HTMLLabelElement>(
+        ".option-number__label"
+      );
 
       expect(container).toHaveClass("option-number");
       expect(container).toHaveClass("container-class");
@@ -319,7 +337,9 @@ describe("OptionNumber.ts", () => {
       };
 
       const { container } = renderComponent(props);
-      const label = document.querySelector(".option-number__label");
+      const label = document.querySelector<HTMLLabelElement>(
+        ".option-number__label"
+      );
 
       expect(container).toHaveClass("only-container");
       expect(label).not.toHaveClass("only-container");
@@ -335,12 +355,12 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(
+      const label = document.querySelector<HTMLLabelElement>(
         ".option-number__label"
-      ) as HTMLLabelElement;
+      );
 
       expect(label).toBeInstanceOf(HTMLLabelElement);
-      expect(label.tagName).toBe("LABEL");
+      expect(label!.tagName).toBe("LABEL");
     });
 
     test("It should render input element", () => {
@@ -351,12 +371,12 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const input = document.querySelector(
+      const input = document.querySelector<HTMLInputElement>(
         ".option-number__input"
-      ) as HTMLInputElement;
+      );
 
       expect(input).toBeInstanceOf(HTMLInputElement);
-      expect(input.tagName).toBe("INPUT");
+      expect(input!.tagName).toBe("INPUT");
     });
 
     test("It should connect label to input via for attribute", () => {
@@ -367,14 +387,13 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(
+      const label = document.querySelector<HTMLLabelElement>(
         ".option-number__label"
-      ) as HTMLLabelElement;
-      const input = document.getElementById(
-        "connected-input"
-      ) as HTMLInputElement;
+      );
+      const input =
+        document.querySelector<HTMLInputElement>("#connected-input");
 
-      expect(label.htmlFor).toBe(input.id);
+      expect(label!.htmlFor).toBe(input!.id);
     });
   });
 
@@ -387,13 +406,11 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const input = document.getElementById(
-        "numeric-input"
-      ) as HTMLInputElement;
+      const input = document.querySelector<HTMLInputElement>("#numeric-input");
 
-      await user.type(input, "123");
+      await user.type(input!, "123");
 
-      expect(input.value).toBe("123");
+      expect(input!.value).toBe("123");
     });
 
     test("It should focus input when label is clicked", async () => {
@@ -405,7 +422,7 @@ describe("OptionNumber.ts", () => {
       renderComponent(props);
 
       const label = screen.getByText("Focus Label");
-      const input = document.getElementById("focus-input") as HTMLInputElement;
+      const input = document.querySelector<HTMLInputElement>("#focus-input");
 
       await user.click(label);
 
@@ -420,13 +437,11 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const input = document.getElementById(
-        "negative-input"
-      ) as HTMLInputElement;
+      const input = document.querySelector<HTMLInputElement>("#negative-input");
 
-      await user.type(input, "-45");
+      await user.type(input!, "-45");
 
-      expect(input.value).toBe("-45");
+      expect(input!.value).toBe("-45");
     });
 
     test("It should handle decimal numbers", async () => {
@@ -437,13 +452,11 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const input = document.getElementById(
-        "decimal-input"
-      ) as HTMLInputElement;
+      const input = document.querySelector<HTMLInputElement>("#decimal-input");
 
-      await user.type(input, "3.14");
+      await user.type(input!, "3.14");
 
-      expect(input.value).toBe("3.14");
+      expect(input!.value).toBe("3.14");
     });
 
     test("It should clear input value", async () => {
@@ -454,13 +467,13 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const input = document.getElementById("clear-input") as HTMLInputElement;
+      const input = document.querySelector<HTMLInputElement>("#clear-input");
 
-      await user.type(input, "100");
-      expect(input.value).toBe("100");
+      await user.type(input!, "100");
+      expect(input!.value).toBe("100");
 
-      await user.clear(input);
-      expect(input.value).toBe("");
+      await user.clear(input!);
+      expect(input!.value).toBe("");
     });
   });
 
@@ -473,7 +486,7 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const input = document.getElementById("simple");
+      const input = document.querySelector<HTMLInputElement>("#simple");
 
       expect(input).toBeInTheDocument();
       expect(input?.id).toBe("simple");
@@ -487,7 +500,7 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const input = document.getElementById("with-dashes-id");
+      const input = document.querySelector<HTMLInputElement>("#with-dashes-id");
 
       expect(input).toBeInTheDocument();
       expect(input?.id).toBe("with-dashes-id");
@@ -501,7 +514,9 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const input = document.getElementById("with_underscores_id");
+      const input = document.querySelector<HTMLInputElement>(
+        "#with_underscores_id"
+      );
 
       expect(input).toBeInTheDocument();
       expect(input?.id).toBe("with_underscores_id");
@@ -515,7 +530,7 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const input = document.getElementById("input-123");
+      const input = document.querySelector<HTMLInputElement>("#input-123");
 
       expect(input).toBeInTheDocument();
     });
@@ -536,8 +551,8 @@ describe("OptionNumber.ts", () => {
       renderComponent(props1);
       renderComponent(props2);
 
-      const input1 = document.getElementById("input-1");
-      const input2 = document.getElementById("input-2");
+      const input1 = document.querySelector<HTMLInputElement>("#input-1");
+      const input2 = document.querySelector<HTMLInputElement>("#input-2");
       const label1 = screen.getByText("Input 1");
       const label2 = screen.getByText("Input 2");
 
@@ -561,14 +576,14 @@ describe("OptionNumber.ts", () => {
       renderComponent(props1);
       renderComponent(props2);
 
-      const input1 = document.getElementById("value-1") as HTMLInputElement;
-      const input2 = document.getElementById("value-2") as HTMLInputElement;
+      const input1 = document.querySelector<HTMLInputElement>("#value-1");
+      const input2 = document.querySelector<HTMLInputElement>("#value-2");
 
-      await user.type(input1, "10");
-      await user.type(input2, "20");
+      await user.type(input1!, "10");
+      await user.type(input2!, "20");
 
-      expect(input1.value).toBe("10");
-      expect(input2.value).toBe("20");
+      expect(input1!.value).toBe("10");
+      expect(input2!.value).toBe("20");
     });
 
     test("It should have unique ids for each input", () => {
@@ -585,8 +600,8 @@ describe("OptionNumber.ts", () => {
       renderComponent(props1);
       renderComponent(props2);
 
-      const input1 = document.getElementById("unique-1");
-      const input2 = document.getElementById("unique-2");
+      const input1 = document.querySelector<HTMLInputElement>("#unique-1");
+      const input2 = document.querySelector<HTMLInputElement>("#unique-2");
 
       expect(input1?.id).not.toBe(input2?.id);
     });
@@ -601,7 +616,9 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(".option-number__label");
+      const label = document.querySelector<HTMLLabelElement>(
+        ".option-number__label"
+      );
 
       expect(label).toBeInTheDocument();
       expect(label?.textContent).toBe("");
@@ -615,7 +632,9 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(".option-number__label");
+      const label = document.querySelector<HTMLLabelElement>(
+        ".option-number__label"
+      );
 
       expect(label?.textContent).toContain("Label & Special");
     });
@@ -645,12 +664,12 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(
+      const label = document.querySelector<HTMLLabelElement>(
         ".option-number__label"
-      ) as HTMLLabelElement;
-      const input = document.getElementById("a11y-input") as HTMLInputElement;
+      );
+      const input = document.querySelector<HTMLInputElement>("#a11y-input");
 
-      expect(label.htmlFor).toBe(input.id);
+      expect(label!.htmlFor).toBe(input!.id);
     });
 
     test("It should be keyboard accessible", async () => {
@@ -661,11 +680,9 @@ describe("OptionNumber.ts", () => {
 
       renderComponent(props);
 
-      const input = document.getElementById(
-        "keyboard-input"
-      ) as HTMLInputElement;
+      const input = document.querySelector<HTMLInputElement>("#keyboard-input");
 
-      input.focus();
+      input!.focus();
       expect(document.activeElement).toBe(input);
     });
   });

@@ -54,7 +54,8 @@ describe("OptionCheckbox.ts", () => {
       renderComponent(props);
 
       const label = screen.getByText("Test Label");
-      const checkbox = document.getElementById("test-checkbox");
+      const checkbox =
+        document.querySelector<HTMLInputElement>("#test-checkbox");
 
       expect(label).toBeInTheDocument();
       expect(checkbox).toBeInTheDocument();
@@ -68,8 +69,12 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(".option-checkbox__label");
-      const checkbox = document.querySelector(".option-checkbox__check");
+      const label = document.querySelector<HTMLLabelElement>(
+        ".option-checkbox__label"
+      );
+      const checkbox = document.querySelector<HTMLInputElement>(
+        ".option-checkbox__check"
+      );
 
       expect(label).toBeInTheDocument();
       expect(checkbox).toBeInTheDocument();
@@ -99,7 +104,7 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const checkbox = document.getElementById("unique-id");
+      const checkbox = document.querySelector<HTMLInputElement>("#unique-id");
 
       expect(checkbox).toBeInTheDocument();
       expect(checkbox?.id).toBe("unique-id");
@@ -113,12 +118,12 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(
+      const label = document.querySelector<HTMLLabelElement>(
         ".option-checkbox__label"
-      ) as HTMLLabelElement;
+      );
 
-      expect(label.htmlFor).toBe("linked-checkbox");
-      expect(label.getAttribute("for")).toBe("linked-checkbox");
+      expect(label!.htmlFor).toBe("linked-checkbox");
+      expect(label!.getAttribute("for")).toBe("linked-checkbox");
     });
 
     test("It should render checkbox with correct type", () => {
@@ -129,11 +134,10 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const checkbox = document.getElementById(
-        "type-checkbox"
-      ) as HTMLInputElement;
+      const checkbox =
+        document.querySelector<HTMLInputElement>("#type-checkbox");
 
-      expect(checkbox.type).toBe("checkbox");
+      expect(checkbox!.type).toBe("checkbox");
     });
 
     test("It should have default value of 'off'", () => {
@@ -144,11 +148,10 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const checkbox = document.getElementById(
-        "value-checkbox"
-      ) as HTMLInputElement;
+      const checkbox =
+        document.querySelector<HTMLInputElement>("#value-checkbox");
 
-      expect(checkbox.value).toBe("off");
+      expect(checkbox!.value).toBe("off");
     });
   });
 
@@ -227,12 +230,12 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(
+      const label = document.querySelector<HTMLLabelElement>(
         ".option-checkbox__label"
-      ) as HTMLLabelElement;
+      );
 
       expect(label).toBeInstanceOf(HTMLLabelElement);
-      expect(label.tagName).toBe("LABEL");
+      expect(label!.tagName).toBe("LABEL");
     });
 
     test("It should render input element", () => {
@@ -243,12 +246,12 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const checkbox = document.querySelector(
+      const checkbox = document.querySelector<HTMLInputElement>(
         ".option-checkbox__check"
-      ) as HTMLInputElement;
+      );
 
       expect(checkbox).toBeInstanceOf(HTMLInputElement);
-      expect(checkbox.tagName).toBe("INPUT");
+      expect(checkbox!.tagName).toBe("INPUT");
     });
 
     test("It should connect label to input via for attribute", () => {
@@ -259,14 +262,14 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(
+      const label = document.querySelector<HTMLLabelElement>(
         ".option-checkbox__label"
-      ) as HTMLLabelElement;
-      const checkbox = document.getElementById(
-        "connected-checkbox"
-      ) as HTMLInputElement;
+      );
+      const checkbox = document.querySelector<HTMLInputElement>(
+        "#connected-checkbox"
+      );
 
-      expect(label.htmlFor).toBe(checkbox.id);
+      expect(label!.htmlFor).toBe(checkbox!.id);
     });
   });
 
@@ -279,15 +282,15 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const checkbox = document.getElementById(
-        "interactive-checkbox"
-      ) as HTMLInputElement;
+      const checkbox = document.querySelector<HTMLInputElement>(
+        "#interactive-checkbox"
+      );
 
-      expect(checkbox.checked).toBe(false);
+      expect(checkbox!.checked).toBe(false);
 
-      await user.click(checkbox);
+      await user.click(checkbox!);
 
-      expect(checkbox.checked).toBe(true);
+      expect(checkbox!.checked).toBe(true);
     });
 
     test("It should toggle checkbox when label is clicked", async () => {
@@ -299,15 +302,15 @@ describe("OptionCheckbox.ts", () => {
       renderComponent(props);
 
       const label = screen.getByText("Click Label");
-      const checkbox = document.getElementById(
-        "label-click-checkbox"
-      ) as HTMLInputElement;
+      const checkbox = document.querySelector<HTMLInputElement>(
+        "#label-click-checkbox"
+      );
 
-      expect(checkbox.checked).toBe(false);
+      expect(checkbox!.checked).toBe(false);
 
       await user.click(label);
 
-      expect(checkbox.checked).toBe(true);
+      expect(checkbox!.checked).toBe(true);
     });
 
     test("It should handle multiple clicks", async () => {
@@ -318,18 +321,18 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const checkbox = document.getElementById(
-        "multi-click-checkbox"
-      ) as HTMLInputElement;
+      const checkbox = document.querySelector<HTMLInputElement>(
+        "#multi-click-checkbox"
+      );
 
-      await user.click(checkbox);
-      expect(checkbox.checked).toBe(true);
+      await user.click(checkbox!);
+      expect(checkbox!.checked).toBe(true);
 
-      await user.click(checkbox);
-      expect(checkbox.checked).toBe(false);
+      await user.click(checkbox!);
+      expect(checkbox!.checked).toBe(false);
 
-      await user.click(checkbox);
-      expect(checkbox.checked).toBe(true);
+      await user.click(checkbox!);
+      expect(checkbox!.checked).toBe(true);
     });
   });
 
@@ -342,7 +345,7 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const checkbox = document.getElementById("simple");
+      const checkbox = document.querySelector<HTMLInputElement>("#simple");
 
       expect(checkbox).toBeInTheDocument();
       expect(checkbox?.id).toBe("simple");
@@ -356,7 +359,8 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const checkbox = document.getElementById("with-dashes-id");
+      const checkbox =
+        document.querySelector<HTMLInputElement>("#with-dashes-id");
 
       expect(checkbox).toBeInTheDocument();
       expect(checkbox?.id).toBe("with-dashes-id");
@@ -370,7 +374,9 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const checkbox = document.getElementById("with_underscores_id");
+      const checkbox = document.querySelector<HTMLInputElement>(
+        "#with_underscores_id"
+      );
 
       expect(checkbox).toBeInTheDocument();
       expect(checkbox?.id).toBe("with_underscores_id");
@@ -384,7 +390,8 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const checkbox = document.getElementById("checkbox-123");
+      const checkbox =
+        document.querySelector<HTMLInputElement>("#checkbox-123");
 
       expect(checkbox).toBeInTheDocument();
     });
@@ -405,8 +412,8 @@ describe("OptionCheckbox.ts", () => {
       renderComponent(props1);
       renderComponent(props2);
 
-      const checkbox1 = document.getElementById("checkbox-1");
-      const checkbox2 = document.getElementById("checkbox-2");
+      const checkbox1 = document.querySelector<HTMLInputElement>("#checkbox-1");
+      const checkbox2 = document.querySelector<HTMLInputElement>("#checkbox-2");
       const label1 = screen.getByText("Checkbox 1");
       const label2 = screen.getByText("Checkbox 2");
 
@@ -430,13 +437,13 @@ describe("OptionCheckbox.ts", () => {
       renderComponent(props1);
       renderComponent(props2);
 
-      const checkbox1 = document.getElementById("state-1") as HTMLInputElement;
-      const checkbox2 = document.getElementById("state-2") as HTMLInputElement;
+      const checkbox1 = document.querySelector<HTMLInputElement>("#state-1");
+      const checkbox2 = document.querySelector<HTMLInputElement>("#state-2");
 
-      await user.click(checkbox1);
+      await user.click(checkbox1!);
 
-      expect(checkbox1.checked).toBe(true);
-      expect(checkbox2.checked).toBe(false);
+      expect(checkbox1!.checked).toBe(true);
+      expect(checkbox2!.checked).toBe(false);
     });
 
     test("It should have unique ids for each checkbox", () => {
@@ -453,8 +460,8 @@ describe("OptionCheckbox.ts", () => {
       renderComponent(props1);
       renderComponent(props2);
 
-      const checkbox1 = document.getElementById("unique-1");
-      const checkbox2 = document.getElementById("unique-2");
+      const checkbox1 = document.querySelector<HTMLInputElement>("#unique-1");
+      const checkbox2 = document.querySelector<HTMLInputElement>("#unique-2");
 
       expect(checkbox1?.id).not.toBe(checkbox2?.id);
     });
@@ -469,7 +476,9 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(".option-checkbox__label");
+      const label = document.querySelector<HTMLLabelElement>(
+        ".option-checkbox__label"
+      );
 
       expect(label).toBeInTheDocument();
       expect(label?.textContent).toBe("");
@@ -483,7 +492,9 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(".option-checkbox__label");
+      const label = document.querySelector<HTMLLabelElement>(
+        ".option-checkbox__label"
+      );
 
       expect(label?.textContent).toContain("Label & Special");
     });
@@ -526,14 +537,13 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const label = document.querySelector(
+      const label = document.querySelector<HTMLLabelElement>(
         ".option-checkbox__label"
-      ) as HTMLLabelElement;
-      const checkbox = document.getElementById(
-        "a11y-checkbox"
-      ) as HTMLInputElement;
+      );
+      const checkbox =
+        document.querySelector<HTMLInputElement>("#a11y-checkbox");
 
-      expect(label.htmlFor).toBe(checkbox.id);
+      expect(label!.htmlFor).toBe(checkbox!.id);
     });
 
     test("It should be keyboard accessible", async () => {
@@ -544,11 +554,10 @@ describe("OptionCheckbox.ts", () => {
 
       renderComponent(props);
 
-      const checkbox = document.getElementById(
-        "keyboard-checkbox"
-      ) as HTMLInputElement;
+      const checkbox =
+        document.querySelector<HTMLInputElement>("#keyboard-checkbox");
 
-      checkbox.focus();
+      checkbox!.focus();
       expect(document.activeElement).toBe(checkbox);
     });
   });
