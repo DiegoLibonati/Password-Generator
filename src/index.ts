@@ -1,9 +1,13 @@
-import { PasswordGeneratorPage } from "@src/pages/PasswordGeneratorPage/PasswordGeneratorPage";
+import "@/index.css";
+import { PasswordGeneratorPage } from "@/pages/PasswordGeneratorPage/PasswordGeneratorPage";
 
-const onInit = () => {
-  const app = document.querySelector<HTMLDivElement>("#app")!;
-  const passwordGeneratorPage = PasswordGeneratorPage();
-  app.appendChild(passwordGeneratorPage);
+const onInit = (): void => {
+  const app = document.querySelector<HTMLDivElement>("#app");
+
+  if (app) {
+    const passwordGeneratorPage = PasswordGeneratorPage();
+    app.appendChild(passwordGeneratorPage);
+  }
 };
 
 document.addEventListener("DOMContentLoaded", onInit);

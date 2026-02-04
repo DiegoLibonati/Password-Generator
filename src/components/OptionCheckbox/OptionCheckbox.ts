@@ -1,14 +1,14 @@
-import { OptionCheckboxProps } from "@src/entities/props";
+import type { OptionCheckboxProps } from "@/types/props";
 
-import "@src/components/OptionCheckbox/OptionCheckbox.css";
+import "@/components/OptionCheckbox/OptionCheckbox.css";
 
 export const OptionCheckbox = ({
   id,
   label,
-  className,
+  className = "",
 }: OptionCheckboxProps): HTMLDivElement => {
   const divRoot = document.createElement("div");
-  divRoot.className = `option-checkbox ${className ?? ""}`;
+  divRoot.className = `option-checkbox ${className}`.trim();
 
   divRoot.innerHTML = `
     <label for="${id}" class="option-checkbox__label">${label}</label>

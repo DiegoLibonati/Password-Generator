@@ -1,90 +1,42 @@
-import { OptionCheckbox } from "@src/components/OptionCheckbox/OptionCheckbox";
-import { OptionNumber } from "@src/components/OptionNumber/OptionNumber";
+import type { PageElement } from "@/types/pages";
 
-import { getRandomIndex } from "@src/helpers/getRandomIndex";
+import { OptionCheckbox } from "@/components/OptionCheckbox/OptionCheckbox";
+import { OptionNumber } from "@/components/OptionNumber/OptionNumber";
+
+import { getRandomIndex } from "@/helpers/getRandomIndex";
 
 import {
   allLowerCaseLetters,
   allNumbers,
   allSymbols,
   allUpperCaseLetters,
-} from "@src/constants/vars";
+} from "@/constants/vars";
 
-import "@src/pages/PasswordGeneratorPage/PasswordGeneratorPage.css";
+import "@/pages/PasswordGeneratorPage/PasswordGeneratorPage.css";
 
-const handleGeneratePassword = () => {
-  const inputText =
-    document.querySelector<HTMLInputElement>(".card__form-input");
-  const inputTextLength =
-    document.querySelector<HTMLInputElement>("#inputTextLength");
-  const checkBoxUpper =
-    document.querySelector<HTMLInputElement>("#checkBoxUpper");
-  const checkBoxLower =
-    document.querySelector<HTMLInputElement>("#checkBoxLower");
-  const checkBoxNumbers =
-    document.querySelector<HTMLInputElement>("#checkBoxNumbers");
-  const checkBoxSymbols =
-    document.querySelector<HTMLInputElement>("#checkBoxSymbols");
+export const PasswordGeneratorPage = (): PageElement => {
+  const mainElement = document.createElement("main");
+  mainElement.className = "password-generator-page";
 
-  const characters: string[] = [];
-  let newPassword: string = "";
-
-  checkBoxUpper!.checked && characters.push(...allUpperCaseLetters);
-  checkBoxLower!.checked && characters.push(...allLowerCaseLetters);
-  checkBoxNumbers!.checked && characters.push(...allNumbers);
-  checkBoxSymbols!.checked && characters.push(...allSymbols);
-
-  if (characters.length === 0) return (inputText!.value = "Use any check.");
-
-  const passwordLength = parseInt(inputTextLength!.value);
-
-  for (let i = 0; i < passwordLength; i++) {
-    const index = getRandomIndex<string>(characters);
-
-    newPassword += characters[index];
-  }
-
-  inputText!.value = newPassword;
-};
-
-const copyText = () => {
-  const inputText =
-    document.querySelector<HTMLInputElement>(".card__form-input");
-
-  inputText!.select();
-  inputText!.setSelectionRange(0, 99999);
-
-  navigator.clipboard.writeText(inputText!.value);
-
-  alert(`Copied the text: ${inputText!.value}`);
-};
-
-export const PasswordGeneratorPage = (): HTMLElement => {
-  const main = document.createElement("main");
-  main.className = "password-generator-page";
-
-  main.innerHTML = `
+  mainElement.innerHTML = `
     <section class="card-wrapper">
-
         <article class="card">
-
             <form class="card__form">
-                <input type="text" id="inputText" class="card__form-input"></input>
+                <input type="text" id="inputText" class="card__form-input" readonly>
             </form>
-
             <div class="card__options"></div>
-
             <div class="card__btns">
                 <button type="button" id="btnGeneratePassword" aria-label="generate password" class="card__btn-generate-password">Generate Password</button>
             </div>
         </article>
-
     </section>
   `;
 
-  const cardOptions = main.querySelector<HTMLDivElement>(".card__options");
-  const inputText = main.querySelector<HTMLInputElement>(".card__form-input");
-  const buttonGeneratePassword = main.querySelector<HTMLButtonElement>(
+  const cardOptions =
+    mainElement.querySelector<HTMLDivElement>(".card__options");
+  const inputText =
+    mainElement.querySelector<HTMLInputElement>(".card__form-input");
+  const buttonGeneratePassword = mainElement.querySelector<HTMLButtonElement>(
     ".card__btn-generate-password"
   );
 
@@ -110,16 +62,84 @@ export const PasswordGeneratorPage = (): HTMLElement => {
     label: "Contain Symbols",
   });
 
-  cardOptions?.append(
-    optionPasswordLength,
-    optionContainCheckboxUppercase,
-    optionContainCheckboxLowercase,
-    optionContainNumbers,
-    optionContainSymbols
-  );
+  if (cardOptions) {
+    cardOptions.append(
+      optionPasswordLength,
+      optionContainCheckboxUppercase,
+      optionContainCheckboxLowercase,
+      optionContainNumbers,
+      optionContainSymbols
+    );
+  }
 
-  inputText?.addEventListener("click", copyText);
-  buttonGeneratePassword?.addEventListener("click", handleGeneratePassword);
+  const handleGeneratePassword = (): void => {
+    const inputTextLength =
+      mainElement.querySelector<HTMLInputElement>("#inputTextLength");
+    const checkBoxUpper =
+      mainElement.querySelector<HTMLInputElement>("#checkBoxUpper");
+    const checkBoxLower =
+      mainElement.querySelector<HTMLInputElement>("#checkBoxLower");
+    const checkBoxNumbers =
+      mainElement.querySelector<HTMLInputElement>("#checkBoxNumbers");
+    const checkBoxSymbols =
+      mainElement.querySelector<HTMLInputElement>("#checkBoxSymbols");
+
+    const characters: string[] = [];
+    let newPassword = "";
+
+    if (checkBoxUpper?.checked) characters.push(...allUpperCaseLetters);
+    if (checkBoxLower?.checked) characters.push(...allLowerCaseLetters);
+    if (checkBoxNumbers?.checked) characters.push(...allNumbers);
+    if (checkBoxSymbols?.checked) characters.push(...allSymbols);
+
+    if (characters.length === 0) {
+      if (inputText) inputText.value = "Use any check.";
+      return;
+    }
+
+    const passwordLength = parseInt(inputTextLength?.value ?? "12", 10);
+
+    for (let i = 0; i < passwordLength; i++) {
+      const index = getRandomIndex(characters);
+      const character = characters[index];
+      if (character) newPassword += character;
+    }
+
+    if (inputText) inputText.value = newPassword;
+  };
+
+  const handleCopyText = (): void => {
+    if (!inputText) return;
+
+    inputText.select();
+    inputText.setSelectionRange(0, 99999);
+
+    void navigator.clipboard.writeText(inputText.value);
+
+    alert(`Copied the text: ${inputText.value}`);
+  };
+
+  if (inputText) {
+    inputText.addEventListener("click", handleCopyText);
+  }
+
+  if (buttonGeneratePassword) {
+    buttonGeneratePassword.addEventListener("click", handleGeneratePassword);
+  }
+
+  const main = mainElement as PageElement;
+
+  main.cleanup = (): void => {
+    if (inputText) {
+      inputText.removeEventListener("click", handleCopyText);
+    }
+    if (buttonGeneratePassword) {
+      buttonGeneratePassword.removeEventListener(
+        "click",
+        handleGeneratePassword
+      );
+    }
+  };
 
   return main;
 };

@@ -1,12 +1,25 @@
-// vite.config.ts
 import { defineConfig } from "vite";
 import path from "path";
 
 export default defineConfig({
   resolve: {
     alias: {
-      "@src": path.resolve(__dirname, "./src"),
-      "@tests": path.resolve(__dirname, "./tests"),
+      "@": path.resolve(__dirname, "./src"),
+      "@tests": path.resolve(__dirname, "./__tests__"),
     },
+  },
+  server: {
+    port: 3000,
+    open: true,
+    strictPort: true,
+  },
+  preview: {
+    port: 3001,
+  },
+  build: {
+    outDir: "dist",
+    sourcemap: true,
+    minify: "esbuild",
+    target: "ES2022",
   },
 });

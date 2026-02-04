@@ -1,6 +1,6 @@
-import { OptionNumberProps } from "@src/entities/props";
+import type { OptionNumberProps } from "@/types/props";
 
-import "@src/components/OptionNumber/OptionNumber.css";
+import "@/components/OptionNumber/OptionNumber.css";
 
 export const OptionNumber = ({
   id,
@@ -13,8 +13,8 @@ export const OptionNumber = ({
 
   divRoot.innerHTML = `
       <label for="${id}" class="option-number__label ${
-    classNameLabel ?? ""
-  }">${label}</label>
+        classNameLabel ?? ""
+      }">${label}</label>
       <input type="number" id="${id}" class="option-number__input">
     `;
 
