@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/dom";
-import user from "@testing-library/user-event";
+import userEvent from "@testing-library/user-event";
 
 import type { OptionCheckboxProps } from "@/types/props";
 
@@ -32,7 +32,7 @@ describe("OptionCheckbox", () => {
         label: "Test Label",
       });
 
-      expect(container.className).toContain("option-checkbox");
+      expect(container).toHaveClass("option-checkbox");
     });
 
     it("should render label element", () => {
@@ -42,7 +42,6 @@ describe("OptionCheckbox", () => {
       });
 
       const label = screen.getByText("Test Label");
-
       expect(label).toBeInTheDocument();
       expect(label.tagName).toBe("LABEL");
     });
@@ -53,21 +52,23 @@ describe("OptionCheckbox", () => {
         label: "Test Label",
       });
 
-      const checkbox =
-        document.querySelector<HTMLInputElement>("#test-checkbox");
-
+      const checkbox = screen.getByRole("checkbox");
       expect(checkbox).toBeInTheDocument();
-      expect(checkbox?.type).toBe("checkbox");
+      expect(checkbox).toHaveAttribute("type", "checkbox");
     });
 
     it("should have correct CSS classes on elements", () => {
-      renderComponent({
+      const container = renderComponent({
         id: "test-checkbox",
         label: "Test Label",
       });
 
-      const label = document.querySelector(".option-checkbox__label");
-      const checkbox = document.querySelector(".option-checkbox__check");
+      const label = container.querySelector<HTMLLabelElement>(
+        ".option-checkbox__label"
+      );
+      const checkbox = container.querySelector<HTMLInputElement>(
+        ".option-checkbox__check"
+      );
 
       expect(label).toBeInTheDocument();
       expect(checkbox).toBeInTheDocument();
@@ -81,9 +82,8 @@ describe("OptionCheckbox", () => {
         label: "Label",
       });
 
-      const checkbox = document.querySelector<HTMLInputElement>("#my-checkbox");
-
-      expect(checkbox?.id).toBe("my-checkbox");
+      const checkbox = screen.getByRole("checkbox");
+      expect(checkbox.id).toBe("my-checkbox");
     });
 
     it("should link label to checkbox with for attribute", () => {
@@ -92,11 +92,8 @@ describe("OptionCheckbox", () => {
         label: "Linked Label",
       });
 
-      const label = document.querySelector<HTMLLabelElement>(
-        ".option-checkbox__label"
-      );
-
-      expect(label?.htmlFor).toBe("linked-checkbox");
+      const label = screen.getByText("Linked Label");
+      expect(label).toHaveAttribute("for", "linked-checkbox");
     });
 
     it("should have default value of off", () => {
@@ -105,10 +102,8 @@ describe("OptionCheckbox", () => {
         label: "Label",
       });
 
-      const checkbox =
-        document.querySelector<HTMLInputElement>("#test-checkbox");
-
-      expect(checkbox?.value).toBe("off");
+      const checkbox = screen.getByRole("checkbox");
+      expect(checkbox).toHaveAttribute("value", "off");
     });
 
     it("should append custom className when provided", () => {
@@ -118,8 +113,7 @@ describe("OptionCheckbox", () => {
         className: "custom-class",
       });
 
-      expect(container).toHaveClass("option-checkbox");
-      expect(container).toHaveClass("custom-class");
+      expect(container).toHaveClass("option-checkbox", "custom-class");
     });
 
     it("should handle undefined className", () => {
@@ -134,56 +128,55 @@ describe("OptionCheckbox", () => {
 
   describe("interaction", () => {
     it("should toggle checkbox when clicked", async () => {
+      const user = userEvent.setup();
+
       renderComponent({
         id: "interactive-checkbox",
         label: "Interactive",
       });
 
-      const checkbox = document.querySelector<HTMLInputElement>(
-        "#interactive-checkbox"
-      );
+      const checkbox = screen.getByRole("checkbox");
+      expect(checkbox).not.toBeChecked();
 
-      expect(checkbox?.checked).toBe(false);
-
-      await user.click(checkbox!);
-
-      expect(checkbox?.checked).toBe(true);
+      await user.click(checkbox);
+      expect(checkbox).toBeChecked();
     });
 
     it("should toggle checkbox when label is clicked", async () => {
+      const user = userEvent.setup();
+
       renderComponent({
         id: "label-click-checkbox",
         label: "Click Label",
       });
 
       const label = screen.getByText("Click Label");
-      const checkbox = document.querySelector<HTMLInputElement>(
-        "#label-click-checkbox"
-      );
+      const checkbox = screen.getByRole("checkbox");
 
-      expect(checkbox?.checked).toBe(false);
+      expect(checkbox).not.toBeChecked();
 
       await user.click(label);
-
-      expect(checkbox?.checked).toBe(true);
+      expect(checkbox).toBeChecked();
     });
 
     it("should handle multiple clicks", async () => {
+      const user = userEvent.setup();
+
       renderComponent({
         id: "multi-click",
         label: "Multi Click",
       });
 
-      const checkbox = document.querySelector<HTMLInputElement>("#multi-click");
+      const checkbox = screen.getByRole("checkbox");
 
-      await user.click(checkbox!);
-      expect(checkbox?.checked).toBe(true);
+      await user.click(checkbox);
+      expect(checkbox).toBeChecked();
 
-      await user.click(checkbox!);
-      expect(checkbox?.checked).toBe(false);
+      await user.click(checkbox);
+      expect(checkbox).not.toBeChecked();
 
-      await user.click(checkbox!);
-      expect(checkbox?.checked).toBe(true);
+      await user.click(checkbox);
+      expect(checkbox).toBeChecked();
     });
   });
 
@@ -194,13 +187,10 @@ describe("OptionCheckbox", () => {
         label: "Accessible Label",
       });
 
-      const label = document.querySelector<HTMLLabelElement>(
-        ".option-checkbox__label"
-      );
-      const checkbox =
-        document.querySelector<HTMLInputElement>("#a11y-checkbox");
+      const label = screen.getByText("Accessible Label");
+      const checkbox = screen.getByRole("checkbox");
 
-      expect(label?.htmlFor).toBe(checkbox?.id);
+      expect(label).toHaveAttribute("for", checkbox.id);
     });
 
     it("should be keyboard focusable", () => {
@@ -209,10 +199,8 @@ describe("OptionCheckbox", () => {
         label: "Keyboard",
       });
 
-      const checkbox =
-        document.querySelector<HTMLInputElement>("#keyboard-checkbox");
-
-      checkbox?.focus();
+      const checkbox = screen.getByRole("checkbox");
+      checkbox.focus();
 
       expect(document.activeElement).toBe(checkbox);
     });

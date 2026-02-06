@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/dom";
-import user from "@testing-library/user-event";
+import userEvent from "@testing-library/user-event";
 
 import type { OptionNumberProps } from "@/types/props";
 
@@ -32,7 +32,7 @@ describe("OptionNumber", () => {
         label: "Test Label",
       });
 
-      expect(container.className).toContain("option-number");
+      expect(container).toHaveClass("option-number");
     });
 
     it("should render label element", () => {
@@ -42,7 +42,6 @@ describe("OptionNumber", () => {
       });
 
       const label = screen.getByText("Test Label");
-
       expect(label).toBeInTheDocument();
       expect(label.tagName).toBe("LABEL");
     });
@@ -53,20 +52,23 @@ describe("OptionNumber", () => {
         label: "Test Label",
       });
 
-      const input = document.querySelector<HTMLInputElement>("#test-number");
-
+      const input = screen.getByRole("spinbutton");
       expect(input).toBeInTheDocument();
-      expect(input?.type).toBe("number");
+      expect(input).toHaveAttribute("type", "number");
     });
 
     it("should have correct CSS classes on elements", () => {
-      renderComponent({
+      const container = renderComponent({
         id: "test-number",
         label: "Test Label",
       });
 
-      const label = document.querySelector(".option-number__label");
-      const input = document.querySelector(".option-number__input");
+      const label = container.querySelector<HTMLLabelElement>(
+        ".option-number__label"
+      );
+      const input = container.querySelector<HTMLInputElement>(
+        ".option-number__input"
+      );
 
       expect(label).toBeInTheDocument();
       expect(input).toBeInTheDocument();
@@ -80,9 +82,8 @@ describe("OptionNumber", () => {
         label: "Label",
       });
 
-      const input = document.querySelector<HTMLInputElement>("#my-number");
-
-      expect(input?.id).toBe("my-number");
+      const input = screen.getByRole("spinbutton");
+      expect(input.id).toBe("my-number");
     });
 
     it("should link label to input with for attribute", () => {
@@ -91,11 +92,8 @@ describe("OptionNumber", () => {
         label: "Linked Label",
       });
 
-      const label = document.querySelector<HTMLLabelElement>(
-        ".option-number__label"
-      );
-
-      expect(label?.htmlFor).toBe("linked-input");
+      const label = screen.getByText("Linked Label");
+      expect(label).toHaveAttribute("for", "linked-input");
     });
 
     it("should append custom className when provided", () => {
@@ -105,23 +103,21 @@ describe("OptionNumber", () => {
         className: "custom-class",
       });
 
-      expect(container).toHaveClass("option-number");
-      expect(container).toHaveClass("custom-class");
+      expect(container).toHaveClass("option-number", "custom-class");
     });
 
     it("should append custom classNameLabel when provided", () => {
-      renderComponent({
+      const container = renderComponent({
         id: "test-number",
         label: "Label",
         classNameLabel: "custom-label-class",
       });
 
-      const label = document.querySelector<HTMLLabelElement>(
+      const label = container.querySelector<HTMLLabelElement>(
         ".option-number__label"
       );
 
-      expect(label).toHaveClass("option-number__label");
-      expect(label).toHaveClass("custom-label-class");
+      expect(label).toHaveClass("option-number__label", "custom-label-class");
     });
 
     it("should handle undefined className", () => {
@@ -134,12 +130,12 @@ describe("OptionNumber", () => {
     });
 
     it("should handle undefined classNameLabel", () => {
-      renderComponent({
+      const container = renderComponent({
         id: "test-number",
         label: "Label",
       });
 
-      const label = document.querySelector<HTMLLabelElement>(
+      const label = container.querySelector<HTMLLabelElement>(
         ".option-number__label"
       );
 
@@ -149,26 +145,29 @@ describe("OptionNumber", () => {
 
   describe("interaction", () => {
     it("should accept numeric input", async () => {
+      const user = userEvent.setup();
+
       renderComponent({
         id: "numeric-input",
         label: "Number",
       });
 
-      const input = document.querySelector<HTMLInputElement>("#numeric-input");
+      const input = screen.getByRole("spinbutton");
+      await user.type(input, "123");
 
-      await user.type(input!, "123");
-
-      expect(input?.value).toBe("123");
+      expect(input).toHaveValue(123);
     });
 
     it("should focus input when label is clicked", async () => {
+      const user = userEvent.setup();
+
       renderComponent({
         id: "focus-input",
         label: "Focus Label",
       });
 
       const label = screen.getByText("Focus Label");
-      const input = document.querySelector<HTMLInputElement>("#focus-input");
+      const input = screen.getByRole("spinbutton");
 
       await user.click(label);
 
@@ -176,31 +175,34 @@ describe("OptionNumber", () => {
     });
 
     it("should handle negative numbers", async () => {
+      const user = userEvent.setup();
+
       renderComponent({
         id: "negative-input",
         label: "Negative",
       });
 
-      const input = document.querySelector<HTMLInputElement>("#negative-input");
+      const input = screen.getByRole("spinbutton");
+      await user.type(input, "-45");
 
-      await user.type(input!, "-45");
-
-      expect(input?.value).toBe("-45");
+      expect(input).toHaveValue(-45);
     });
 
     it("should clear input value", async () => {
+      const user = userEvent.setup();
+
       renderComponent({
         id: "clear-input",
         label: "Clear",
       });
 
-      const input = document.querySelector<HTMLInputElement>("#clear-input");
+      const input = screen.getByRole("spinbutton");
 
-      await user.type(input!, "100");
-      expect(input?.value).toBe("100");
+      await user.type(input, "100");
+      expect(input).toHaveValue(100);
 
-      await user.clear(input!);
-      expect(input?.value).toBe("");
+      await user.clear(input);
+      expect(input).toHaveValue(null);
     });
   });
 
@@ -211,12 +213,10 @@ describe("OptionNumber", () => {
         label: "Accessible Label",
       });
 
-      const label = document.querySelector<HTMLLabelElement>(
-        ".option-number__label"
-      );
-      const input = document.querySelector<HTMLInputElement>("#a11y-input");
+      const label = screen.getByText("Accessible Label");
+      const input = screen.getByRole("spinbutton");
 
-      expect(label?.htmlFor).toBe(input?.id);
+      expect(label).toHaveAttribute("for", input.id);
     });
 
     it("should be keyboard focusable", () => {
@@ -225,9 +225,8 @@ describe("OptionNumber", () => {
         label: "Keyboard",
       });
 
-      const input = document.querySelector<HTMLInputElement>("#keyboard-input");
-
-      input?.focus();
+      const input = screen.getByRole("spinbutton");
+      input.focus();
 
       expect(document.activeElement).toBe(input);
     });
