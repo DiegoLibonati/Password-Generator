@@ -1,3 +1,3 @@
-export interface PageElement extends HTMLElement {
+export interface Page extends HTMLElement {
   cleanup?: () => void;
 }

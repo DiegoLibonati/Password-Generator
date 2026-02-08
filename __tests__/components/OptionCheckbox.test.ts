@@ -2,10 +2,13 @@ import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
 import type { OptionCheckboxProps } from "@/types/props";
+import type { OptionCheckboxComponent } from "@/types/components";
 
 import { OptionCheckbox } from "@/components/OptionCheckbox/OptionCheckbox";
 
-const renderComponent = (props: OptionCheckboxProps): HTMLDivElement => {
+const renderComponent = (
+  props: OptionCheckboxProps
+): OptionCheckboxComponent => {
   const container = OptionCheckbox(props);
   document.body.appendChild(container);
   return container;

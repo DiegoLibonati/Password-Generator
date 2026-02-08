@@ -2,10 +2,11 @@ import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
 import type { OptionNumberProps } from "@/types/props";
+import type { OptionNumberComponent } from "@/types/components";
 
 import { OptionNumber } from "@/components/OptionNumber/OptionNumber";
 
-const renderComponent = (props: OptionNumberProps): HTMLDivElement => {
+const renderComponent = (props: OptionNumberProps): OptionNumberComponent => {
   const container = OptionNumber(props);
   document.body.appendChild(container);
   return container;

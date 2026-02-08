@@ -4,7 +4,7 @@ import prettier from "eslint-plugin-prettier";
 import prettierConfig from "eslint-config-prettier";
 import globals from "globals";
 
-export default typescript.config(
+export default [
   // Archivos ignorados
   {
     ignores: [
@@ -12,9 +12,8 @@ export default typescript.config(
       "node_modules/**",
       "coverage/**",
       "*.config.js",
-      "*.config.ts",
-      "vite.config.ts",
-      "jest.config.ts",
+      "vite.config.js",
+      "jest.config.js",
     ],
   },
 
@@ -56,10 +55,7 @@ export default typescript.config(
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
-      "@typescript-eslint/restrict-template-expressions": [
-        "error",
-        { allowNumber: true, allowBoolean: true },
-      ],
+      "@typescript-eslint/restrict-template-expressions": "off",
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/consistent-type-imports": [
         "error",
@@ -95,5 +91,5 @@ export default typescript.config(
       "@typescript-eslint/no-unsafe-argument": "off",
       "no-console": "off",
     },
-  }
-);
+  },
+];

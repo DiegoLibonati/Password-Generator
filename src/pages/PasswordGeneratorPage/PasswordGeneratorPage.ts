@@ -1,4 +1,4 @@
-import type { PageElement } from "@/types/pages";
+import type { Page } from "@/types/pages";
 
 import { OptionCheckbox } from "@/components/OptionCheckbox/OptionCheckbox";
 import { OptionNumber } from "@/components/OptionNumber/OptionNumber";
@@ -14,11 +14,11 @@ import {
 
 import "@/pages/PasswordGeneratorPage/PasswordGeneratorPage.css";
 
-export const PasswordGeneratorPage = (): PageElement => {
-  const mainElement = document.createElement("main");
-  mainElement.className = "password-generator-page";
+export const PasswordGeneratorPage = (): Page => {
+  const main = document.createElement("main") as Page;
+  main.className = "password-generator-page";
 
-  mainElement.innerHTML = `
+  main.innerHTML = `
     <section class="card-wrapper">
         <article class="card">
             <form class="card__form">
@@ -32,11 +32,9 @@ export const PasswordGeneratorPage = (): PageElement => {
     </section>
   `;
 
-  const cardOptions =
-    mainElement.querySelector<HTMLDivElement>(".card__options");
-  const inputText =
-    mainElement.querySelector<HTMLInputElement>(".card__form-input");
-  const buttonGeneratePassword = mainElement.querySelector<HTMLButtonElement>(
+  const cardOptions = main.querySelector<HTMLDivElement>(".card__options");
+  const inputText = main.querySelector<HTMLInputElement>(".card__form-input");
+  const buttonGeneratePassword = main.querySelector<HTMLButtonElement>(
     ".card__btn-generate-password"
   );
 
@@ -74,15 +72,15 @@ export const PasswordGeneratorPage = (): PageElement => {
 
   const handleGeneratePassword = (): void => {
     const inputTextLength =
-      mainElement.querySelector<HTMLInputElement>("#inputTextLength");
+      main.querySelector<HTMLInputElement>("#inputTextLength");
     const checkBoxUpper =
-      mainElement.querySelector<HTMLInputElement>("#checkBoxUpper");
+      main.querySelector<HTMLInputElement>("#checkBoxUpper");
     const checkBoxLower =
-      mainElement.querySelector<HTMLInputElement>("#checkBoxLower");
+      main.querySelector<HTMLInputElement>("#checkBoxLower");
     const checkBoxNumbers =
-      mainElement.querySelector<HTMLInputElement>("#checkBoxNumbers");
+      main.querySelector<HTMLInputElement>("#checkBoxNumbers");
     const checkBoxSymbols =
-      mainElement.querySelector<HTMLInputElement>("#checkBoxSymbols");
+      main.querySelector<HTMLInputElement>("#checkBoxSymbols");
 
     const characters: string[] = [];
     let newPassword = "";
@@ -126,8 +124,6 @@ export const PasswordGeneratorPage = (): PageElement => {
   if (buttonGeneratePassword) {
     buttonGeneratePassword.addEventListener("click", handleGeneratePassword);
   }
-
-  const main = mainElement as PageElement;
 
   main.cleanup = (): void => {
     if (inputText) {

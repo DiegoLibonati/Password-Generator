@@ -1,11 +1,11 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
-import type { PageElement } from "@/types/pages";
+import type { Page } from "@/types/pages";
 
 import { PasswordGeneratorPage } from "@/pages/PasswordGeneratorPage/PasswordGeneratorPage";
 
-const renderPage = (): PageElement => {
+const renderPage = (): Page => {
   const page = PasswordGeneratorPage();
   document.body.appendChild(page);
   return page;

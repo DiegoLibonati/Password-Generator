@@ -1,4 +1,5 @@
 import type { OptionCheckboxProps } from "@/types/props";
+import type { OptionCheckboxComponent } from "@/types/components";
 
 import "@/components/OptionCheckbox/OptionCheckbox.css";
 
@@ -6,7 +7,7 @@ export const OptionCheckbox = ({
   id,
   label,
   className = "",
-}: OptionCheckboxProps): HTMLDivElement => {
+}: OptionCheckboxProps): OptionCheckboxComponent => {
   const divRoot = document.createElement("div");
   divRoot.className = `option-checkbox ${className}`.trim();
 

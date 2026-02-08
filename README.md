@@ -52,7 +52,6 @@ No production dependencies - Pure Vanilla TypeScript
 "lint-staged": "^16.2.7"
 "prettier": "^3.8.1"
 "ts-jest": "^29.2.5"
-"ts-node": "^10.9.2"
 "typescript": "^5.2.2"
 "typescript-eslint": "^8.54.0"
 "vite": "^7.1.6"

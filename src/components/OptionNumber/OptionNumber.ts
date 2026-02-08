@@ -1,4 +1,5 @@
 import type { OptionNumberProps } from "@/types/props";
+import type { OptionNumberComponent } from "@/types/components";
 
 import "@/components/OptionNumber/OptionNumber.css";
 
@@ -7,7 +8,7 @@ export const OptionNumber = ({
   label,
   className,
   classNameLabel,
-}: OptionNumberProps): HTMLDivElement => {
+}: OptionNumberProps): OptionNumberComponent => {
   const divRoot = document.createElement("div");
   divRoot.className = `option-number ${className ?? ""}`;
 
