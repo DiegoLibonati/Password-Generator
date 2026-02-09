@@ -4,10 +4,10 @@ import { PasswordGeneratorPage } from "@/pages/PasswordGeneratorPage/PasswordGen
 const onInit = (): void => {
   const app = document.querySelector<HTMLDivElement>("#app");
 
-  if (app) {
-    const passwordGeneratorPage = PasswordGeneratorPage();
-    app.appendChild(passwordGeneratorPage);
-  }
+  if (!app) throw new Error(`You must render a container to mount the app.`);
+
+  const passwordGeneratorPage = PasswordGeneratorPage();
+  app.appendChild(passwordGeneratorPage);
 };
 
 document.addEventListener("DOMContentLoaded", onInit);

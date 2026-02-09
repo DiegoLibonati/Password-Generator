@@ -32,11 +32,11 @@ export const PasswordGeneratorPage = (): Page => {
     </section>
   `;
 
-  const cardOptions = main.querySelector<HTMLDivElement>(".card__options");
-  const inputText = main.querySelector<HTMLInputElement>(".card__form-input");
+  const cardOptions = main.querySelector<HTMLDivElement>(".card__options")!;
+  const inputText = main.querySelector<HTMLInputElement>(".card__form-input")!;
   const buttonGeneratePassword = main.querySelector<HTMLButtonElement>(
     ".card__btn-generate-password"
-  );
+  )!;
 
   const optionPasswordLength = OptionNumber({
     id: "inputTextLength",
@@ -60,15 +60,13 @@ export const PasswordGeneratorPage = (): Page => {
     label: "Contain Symbols",
   });
 
-  if (cardOptions) {
-    cardOptions.append(
-      optionPasswordLength,
-      optionContainCheckboxUppercase,
-      optionContainCheckboxLowercase,
-      optionContainNumbers,
-      optionContainSymbols
-    );
-  }
+  cardOptions.append(
+    optionPasswordLength,
+    optionContainCheckboxUppercase,
+    optionContainCheckboxLowercase,
+    optionContainNumbers,
+    optionContainSymbols
+  );
 
   const handleGeneratePassword = (): void => {
     const inputTextLength =
@@ -91,7 +89,7 @@ export const PasswordGeneratorPage = (): Page => {
     if (checkBoxSymbols?.checked) characters.push(...allSymbols);
 
     if (characters.length === 0) {
-      if (inputText) inputText.value = "Use any check.";
+      inputText.value = "Use any check.";
       return;
     }
 
@@ -103,12 +101,10 @@ export const PasswordGeneratorPage = (): Page => {
       if (character) newPassword += character;
     }
 
-    if (inputText) inputText.value = newPassword;
+    inputText.value = newPassword;
   };
 
   const handleCopyText = (): void => {
-    if (!inputText) return;
-
     inputText.select();
     inputText.setSelectionRange(0, 99999);
 
@@ -117,24 +113,12 @@ export const PasswordGeneratorPage = (): Page => {
     alert(`Copied the text: ${inputText.value}`);
   };
 
-  if (inputText) {
-    inputText.addEventListener("click", handleCopyText);
-  }
-
-  if (buttonGeneratePassword) {
-    buttonGeneratePassword.addEventListener("click", handleGeneratePassword);
-  }
+  inputText.addEventListener("click", handleCopyText);
+  buttonGeneratePassword.addEventListener("click", handleGeneratePassword);
 
   main.cleanup = (): void => {
-    if (inputText) {
-      inputText.removeEventListener("click", handleCopyText);
-    }
-    if (buttonGeneratePassword) {
-      buttonGeneratePassword.removeEventListener(
-        "click",
-        handleGeneratePassword
-      );
-    }
+    inputText.removeEventListener("click", handleCopyText);
+    buttonGeneratePassword.removeEventListener("click", handleGeneratePassword);
   };
 
   return main;
