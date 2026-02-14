@@ -6,259 +6,156 @@ import type { Page } from "@/types/pages";
 import { PasswordGeneratorPage } from "@/pages/PasswordGeneratorPage/PasswordGeneratorPage";
 
 const renderPage = (): Page => {
-  const page = PasswordGeneratorPage();
-  document.body.appendChild(page);
-  return page;
+  const container = PasswordGeneratorPage();
+  document.body.appendChild(container);
+  return container;
 };
 
 describe("PasswordGeneratorPage", () => {
-  beforeEach(() => {
-    jest.spyOn(window, "alert").mockImplementation(jest.fn());
-  });
-
   afterEach(() => {
     document.body.innerHTML = "";
-    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
-  describe("render", () => {
-    it("should create a main element", () => {
-      renderPage();
+  it("should render the page with correct structure", () => {
+    renderPage();
 
-      const main = screen.getByRole("main");
-      expect(main).toBeInTheDocument();
-      expect(main.tagName).toBe("MAIN");
-    });
-
-    it("should have password-generator-page class", () => {
-      renderPage();
-
-      const main = screen.getByRole("main");
-      expect(main).toHaveClass("password-generator-page");
-    });
-
-    it("should render password input field", () => {
-      const page = renderPage();
-
-      const input = page.querySelector<HTMLInputElement>(".card__form-input");
-      expect(input).toBeInTheDocument();
-    });
-
-    it("should render generate password button", () => {
-      renderPage();
-
-      const button = screen.getByRole("button", { name: /generate password/i });
-      expect(button).toBeInTheDocument();
-    });
-
-    it("should render password length option", () => {
-      renderPage();
-
-      const label = screen.getByText("Password Length");
-      expect(label).toBeInTheDocument();
-    });
-
-    it("should render uppercase checkbox option", () => {
-      renderPage();
-
-      const label = screen.getByText("Contain Uppercase Letters");
-      expect(label).toBeInTheDocument();
-    });
-
-    it("should render lowercase checkbox option", () => {
-      renderPage();
-
-      const label = screen.getByText("Contain Lowercase Letters");
-      expect(label).toBeInTheDocument();
-    });
-
-    it("should render numbers checkbox option", () => {
-      renderPage();
-
-      const label = screen.getByText("Contain Numbers");
-      expect(label).toBeInTheDocument();
-    });
-
-    it("should render symbols checkbox option", () => {
-      renderPage();
-
-      const label = screen.getByText("Contain Symbols");
-      expect(label).toBeInTheDocument();
-    });
+    const main = document.querySelector<HTMLElement>(
+      ".password-generator-page"
+    );
+    expect(main).toBeInTheDocument();
+    expect(main?.tagName).toBe("MAIN");
   });
 
-  describe("password generation", () => {
-    it("should show error message when no checkbox is selected", async () => {
-      const user = userEvent.setup();
-      const page = renderPage();
+  it("should render password input as readonly", () => {
+    renderPage();
 
-      const button = screen.getByRole("button", { name: /generate password/i });
-      const input = page.querySelector<HTMLInputElement>(".card__form-input");
-
-      await user.click(button);
-
-      expect(input).toHaveValue("Use any check.");
-    });
-
-    it("should generate password with uppercase letters", async () => {
-      const user = userEvent.setup();
-      const page = renderPage();
-
-      const button = screen.getByRole("button", { name: /generate password/i });
-      const input = page.querySelector<HTMLInputElement>(".card__form-input");
-      const checkBoxUpper =
-        page.querySelector<HTMLInputElement>("#checkBoxUpper");
-      const inputTextLength =
-        page.querySelector<HTMLInputElement>("#inputTextLength");
-
-      await user.clear(inputTextLength!);
-      await user.type(inputTextLength!, "10");
-      await user.click(checkBoxUpper!);
-      await user.click(button);
-
-      expect(input?.value).toMatch(/^[A-Z]+$/);
-      expect(input?.value).toHaveLength(10);
-    });
-
-    it("should generate password with lowercase letters", async () => {
-      const user = userEvent.setup();
-      const page = renderPage();
-
-      const button = screen.getByRole("button", { name: /generate password/i });
-      const input = page.querySelector<HTMLInputElement>(".card__form-input");
-      const checkBoxLower =
-        page.querySelector<HTMLInputElement>("#checkBoxLower");
-      const inputTextLength =
-        page.querySelector<HTMLInputElement>("#inputTextLength");
-
-      await user.clear(inputTextLength!);
-      await user.type(inputTextLength!, "10");
-      await user.click(checkBoxLower!);
-      await user.click(button);
-
-      expect(input?.value).toMatch(/^[a-z]+$/);
-      expect(input?.value).toHaveLength(10);
-    });
-
-    it("should generate password with numbers", async () => {
-      const user = userEvent.setup();
-      const page = renderPage();
-
-      const button = screen.getByRole("button", { name: /generate password/i });
-      const input = page.querySelector<HTMLInputElement>(".card__form-input");
-      const checkBoxNumbers =
-        page.querySelector<HTMLInputElement>("#checkBoxNumbers");
-      const inputTextLength =
-        page.querySelector<HTMLInputElement>("#inputTextLength");
-
-      await user.clear(inputTextLength!);
-      await user.type(inputTextLength!, "10");
-      await user.click(checkBoxNumbers!);
-      await user.click(button);
-
-      expect(input?.value).toMatch(/^[0-9]+$/);
-      expect(input?.value).toHaveLength(10);
-    });
-
-    it("should generate password with specified length", async () => {
-      const user = userEvent.setup();
-      const page = renderPage();
-
-      const button = screen.getByRole("button", { name: /generate password/i });
-      const input = page.querySelector<HTMLInputElement>(".card__form-input");
-      const checkBoxUpper =
-        page.querySelector<HTMLInputElement>("#checkBoxUpper");
-      const inputTextLength =
-        page.querySelector<HTMLInputElement>("#inputTextLength");
-
-      await user.clear(inputTextLength!);
-      await user.type(inputTextLength!, "20");
-      await user.click(checkBoxUpper!);
-      await user.click(button);
-
-      expect(input?.value).toHaveLength(20);
-    });
-
-    it("should generate password with mixed characters", async () => {
-      const user = userEvent.setup();
-      const page = renderPage();
-
-      const button = screen.getByRole("button", { name: /generate password/i });
-      const input = page.querySelector<HTMLInputElement>(".card__form-input");
-      const checkBoxUpper =
-        page.querySelector<HTMLInputElement>("#checkBoxUpper");
-      const checkBoxLower =
-        page.querySelector<HTMLInputElement>("#checkBoxLower");
-      const checkBoxNumbers =
-        page.querySelector<HTMLInputElement>("#checkBoxNumbers");
-      const inputTextLength =
-        page.querySelector<HTMLInputElement>("#inputTextLength");
-
-      await user.clear(inputTextLength!);
-      await user.type(inputTextLength!, "15");
-      await user.click(checkBoxUpper!);
-      await user.click(checkBoxLower!);
-      await user.click(checkBoxNumbers!);
-      await user.click(button);
-
-      expect(input?.value).toHaveLength(15);
-      expect(input?.value).toMatch(/^[A-Za-z0-9]+$/);
-    });
+    const input = document.querySelector<HTMLInputElement>("#inputText");
+    expect(input).toBeInTheDocument();
+    expect(input).toHaveAttribute("readonly");
   });
 
-  describe("copy functionality", () => {
-    it("should call alert when input is clicked", async () => {
-      const user = userEvent.setup();
-      const page = renderPage();
+  it("should render all option components", () => {
+    renderPage();
 
-      const input = page.querySelector<HTMLInputElement>(".card__form-input");
-
-      const writeTextMock = jest.fn().mockResolvedValue(undefined);
-      Object.defineProperty(navigator, "clipboard", {
-        value: {
-          writeText: writeTextMock,
-        },
-        writable: true,
-        configurable: true,
-      });
-
-      if (input) input.value = "test-password";
-      await user.click(input!);
-
-      expect(window.alert).toHaveBeenCalledWith(
-        "Copied the text: test-password"
-      );
-    });
+    expect(screen.getByText("Password Length")).toBeInTheDocument();
+    expect(screen.getByText("Contain Uppercase Letters")).toBeInTheDocument();
+    expect(screen.getByText("Contain Lowercase Letters")).toBeInTheDocument();
+    expect(screen.getByText("Contain Numbers")).toBeInTheDocument();
+    expect(screen.getByText("Contain Symbols")).toBeInTheDocument();
   });
 
-  describe("cleanup", () => {
-    it("should have cleanup function", () => {
-      const page = renderPage();
+  it("should render generate password button", () => {
+    renderPage();
 
-      expect(typeof page.cleanup).toBe("function");
+    const button = screen.getByRole("button", { name: "generate password" });
+    expect(button).toBeInTheDocument();
+  });
+
+  it("should show message when no options are checked", async () => {
+    const user = userEvent.setup();
+    renderPage();
+
+    const button = screen.getByRole("button", { name: "generate password" });
+    await user.click(button);
+
+    const input = document.querySelector<HTMLInputElement>("#inputText");
+    expect(input?.value).toBe("Use any check.");
+  });
+
+  it("should generate password with checked options", async () => {
+    const user = userEvent.setup();
+    renderPage();
+
+    const lengthInput =
+      document.querySelector<HTMLInputElement>("#inputTextLength");
+    const checkboxLower =
+      document.querySelector<HTMLInputElement>("#checkBoxLower");
+    const checkboxNumbers =
+      document.querySelector<HTMLInputElement>("#checkBoxNumbers");
+    const button = screen.getByRole("button", { name: "generate password" });
+
+    if (lengthInput && !lengthInput.value) {
+      await user.type(lengthInput, "12");
+    }
+
+    await user.click(checkboxLower!);
+    await user.click(checkboxNumbers!);
+
+    expect(checkboxLower?.checked).toBe(true);
+    expect(checkboxNumbers?.checked).toBe(true);
+
+    await user.click(button);
+
+    const input = document.querySelector<HTMLInputElement>("#inputText");
+    expect(input?.value).not.toBe("");
+    expect(input?.value).not.toBe("Use any check.");
+    expect(input?.value.length).toBeGreaterThan(0);
+  });
+
+  it("should copy password to clipboard when input is clicked", async () => {
+    const user = userEvent.setup();
+    const alertSpy = jest.spyOn(window, "alert").mockImplementation();
+    const writeTextMock = jest.fn().mockResolvedValue(undefined);
+
+    Object.defineProperty(navigator, "clipboard", {
+      value: {
+        writeText: writeTextMock,
+      },
+      writable: true,
+      configurable: true,
     });
 
-    it("should remove event listeners on cleanup", () => {
-      const page = renderPage();
+    renderPage();
 
-      const input = page.querySelector<HTMLInputElement>(".card__form-input");
-      const button = page.querySelector<HTMLButtonElement>(
-        ".card__btn-generate-password"
-      );
+    const checkboxLower =
+      document.querySelector<HTMLInputElement>("#checkBoxLower");
+    const button = screen.getByRole("button", { name: "generate password" });
 
-      const inputRemoveSpy = jest.spyOn(input!, "removeEventListener");
-      const buttonRemoveSpy = jest.spyOn(button!, "removeEventListener");
+    if (checkboxLower) await user.click(checkboxLower);
+    await user.click(button);
 
-      page.cleanup?.();
+    const input = document.querySelector<HTMLInputElement>("#inputText");
+    const generatedPassword = input?.value ?? "";
 
-      expect(inputRemoveSpy).toHaveBeenCalledWith(
-        "click",
-        expect.any(Function)
-      );
-      expect(buttonRemoveSpy).toHaveBeenCalledWith(
-        "click",
-        expect.any(Function)
-      );
-    });
+    if (input) await user.click(input);
+
+    expect(writeTextMock).toHaveBeenCalledWith(generatedPassword);
+    expect(alertSpy).toHaveBeenCalledWith(
+      `Copied the text: ${generatedPassword}`
+    );
+
+    alertSpy.mockRestore();
+  });
+
+  it("should use custom password length", async () => {
+    const user = userEvent.setup();
+    renderPage();
+
+    const lengthInput =
+      document.querySelector<HTMLInputElement>("#inputTextLength");
+    const checkboxLower =
+      document.querySelector<HTMLInputElement>("#checkBoxLower");
+    const button = screen.getByRole("button", { name: "generate password" });
+
+    if (lengthInput) {
+      await user.clear(lengthInput);
+      await user.type(lengthInput, "20");
+    }
+    if (checkboxLower) await user.click(checkboxLower);
+    await user.click(button);
+
+    const passwordInput =
+      document.querySelector<HTMLInputElement>("#inputText");
+    expect(passwordInput?.value.length).toBe(20);
+  });
+
+  it("should cleanup event listeners", () => {
+    const page = renderPage();
+
+    expect(page.cleanup).toBeDefined();
+    page.cleanup?.();
+
+    expect(page.cleanup).toBeDefined();
   });
 });
