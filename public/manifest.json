@@ -1,0 +1,21 @@
+{
+  "name": "Password Generator",
+  "short_name": "Password Generator",
+  "description": "I made a web page that allows the user to generate a random password. From this generated password you can choose: its length, if it contains uppercase letters, lowercase letters, numbers and/or symbols. It is a very customizable password generator.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
