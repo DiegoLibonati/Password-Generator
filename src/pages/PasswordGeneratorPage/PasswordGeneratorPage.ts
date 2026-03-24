@@ -19,14 +19,14 @@ export const PasswordGeneratorPage = (): Page => {
   main.className = "password-generator-page";
 
   main.innerHTML = `
-    <section class="card-wrapper">
+    <section class="card-wrapper" aria-label="Password generator">
         <article class="card">
-            <form class="card__form">
-                <input type="text" id="inputText" class="card__form-input" readonly>
+            <form class="card__form" aria-label="Generated password">
+                <input type="text" id="inputText" class="card__form-input" readonly aria-label="Generated password, click to copy">
             </form>
-            <div class="card__options"></div>
+            <div class="card__options" role="group" aria-label="Password options"></div>
             <div class="card__btns">
-                <button type="button" id="btnGeneratePassword" aria-label="generate password" class="card__btn-generate-password">Generate Password</button>
+                <button type="button" id="btnGeneratePassword" aria-label="Generate password" class="card__btn-generate-password">Generate Password</button>
             </div>
         </article>
     </section>

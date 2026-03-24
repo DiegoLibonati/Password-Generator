@@ -48,7 +48,7 @@ describe("PasswordGeneratorPage", () => {
   it("should render generate password button", () => {
     renderPage();
 
-    const button = screen.getByRole("button", { name: "generate password" });
+    const button = screen.getByRole("button", { name: "Generate password" });
     expect(button).toBeInTheDocument();
   });
 
@@ -56,7 +56,7 @@ describe("PasswordGeneratorPage", () => {
     const user = userEvent.setup();
     renderPage();
 
-    const button = screen.getByRole("button", { name: "generate password" });
+    const button = screen.getByRole("button", { name: "Generate password" });
     await user.click(button);
 
     const input = document.querySelector<HTMLInputElement>("#inputText");
@@ -73,7 +73,7 @@ describe("PasswordGeneratorPage", () => {
       document.querySelector<HTMLInputElement>("#checkBoxLower");
     const checkboxNumbers =
       document.querySelector<HTMLInputElement>("#checkBoxNumbers");
-    const button = screen.getByRole("button", { name: "generate password" });
+    const button = screen.getByRole("button", { name: "Generate password" });
 
     if (lengthInput && !lengthInput.value) {
       await user.type(lengthInput, "12");
@@ -110,7 +110,7 @@ describe("PasswordGeneratorPage", () => {
 
     const checkboxLower =
       document.querySelector<HTMLInputElement>("#checkBoxLower");
-    const button = screen.getByRole("button", { name: "generate password" });
+    const button = screen.getByRole("button", { name: "Generate password" });
 
     if (checkboxLower) await user.click(checkboxLower);
     await user.click(button);
@@ -136,7 +136,7 @@ describe("PasswordGeneratorPage", () => {
       document.querySelector<HTMLInputElement>("#inputTextLength");
     const checkboxLower =
       document.querySelector<HTMLInputElement>("#checkBoxLower");
-    const button = screen.getByRole("button", { name: "generate password" });
+    const button = screen.getByRole("button", { name: "Generate password" });
 
     if (lengthInput) {
       await user.clear(lengthInput);
