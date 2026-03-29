@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 
 import type { Page } from "@/types/pages";
 
-import { PasswordGeneratorPage } from "@/pages/PasswordGeneratorPage/PasswordGeneratorPage";
+import PasswordGeneratorPage from "@/pages/PasswordGeneratorPage/PasswordGeneratorPage";
 
 const renderPage = (): Page => {
   const container = PasswordGeneratorPage();

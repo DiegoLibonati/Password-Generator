@@ -3,7 +3,7 @@ import { screen } from "@testing-library/dom";
 import type { OptionNumberProps } from "@/types/props";
 import type { OptionNumberComponent } from "@/types/components";
 
-import { OptionNumber } from "@/components/OptionNumber/OptionNumber";
+import OptionNumber from "@/components/OptionNumber/OptionNumber";
 
 const renderComponent = (props: OptionNumberProps): OptionNumberComponent => {
   const container = OptionNumber(props);

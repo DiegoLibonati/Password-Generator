@@ -3,7 +3,7 @@ import { screen } from "@testing-library/dom";
 import type { OptionCheckboxProps } from "@/types/props";
 import type { OptionCheckboxComponent } from "@/types/components";
 
-import { OptionCheckbox } from "@/components/OptionCheckbox/OptionCheckbox";
+import OptionCheckbox from "@/components/OptionCheckbox/OptionCheckbox";
 
 const renderComponent = (
   props: OptionCheckboxProps

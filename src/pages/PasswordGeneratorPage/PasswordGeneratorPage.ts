@@ -1,7 +1,7 @@
 import type { Page } from "@/types/pages";
 
-import { OptionCheckbox } from "@/components/OptionCheckbox/OptionCheckbox";
-import { OptionNumber } from "@/components/OptionNumber/OptionNumber";
+import OptionCheckbox from "@/components/OptionCheckbox/OptionCheckbox";
+import OptionNumber from "@/components/OptionNumber/OptionNumber";
 
 import { getRandomIndex } from "@/helpers/getRandomIndex";
 
@@ -14,7 +14,7 @@ import {
 
 import "@/pages/PasswordGeneratorPage/PasswordGeneratorPage.css";
 
-export const PasswordGeneratorPage = (): Page => {
+const PasswordGeneratorPage = (): Page => {
   const main = document.createElement("main") as Page;
   main.className = "password-generator-page";
 
@@ -123,3 +123,5 @@ export const PasswordGeneratorPage = (): Page => {
 
   return main;
 };
+
+export default PasswordGeneratorPage;

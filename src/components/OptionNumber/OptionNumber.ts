@@ -3,7 +3,7 @@ import type { OptionNumberComponent } from "@/types/components";
 
 import "@/components/OptionNumber/OptionNumber.css";
 
-export const OptionNumber = ({
+const OptionNumber = ({
   id,
   label,
   className,
@@ -21,3 +21,5 @@ export const OptionNumber = ({
 
   return divRoot;
 };
+
+export default OptionNumber;

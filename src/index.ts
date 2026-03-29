@@ -1,5 +1,5 @@
 import "@/index.css";
-import { PasswordGeneratorPage } from "@/pages/PasswordGeneratorPage/PasswordGeneratorPage";
+import PasswordGeneratorPage from "@/pages/PasswordGeneratorPage/PasswordGeneratorPage";
 
 const onInit = (): void => {
   const app = document.querySelector<HTMLDivElement>("#app");

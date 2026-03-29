@@ -3,7 +3,7 @@ import type { OptionCheckboxComponent } from "@/types/components";
 
 import "@/components/OptionCheckbox/OptionCheckbox.css";
 
-export const OptionCheckbox = ({
+const OptionCheckbox = ({
   id,
   label,
   className = "",
@@ -18,3 +18,5 @@ export const OptionCheckbox = ({
 
   return divRoot;
 };
+
+export default OptionCheckbox;
