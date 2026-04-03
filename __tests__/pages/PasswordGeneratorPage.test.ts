@@ -96,11 +96,11 @@ describe("PasswordGeneratorPage", () => {
   it("should copy password to clipboard when input is clicked", async () => {
     const user = userEvent.setup();
     const alertSpy = jest.spyOn(window, "alert").mockImplementation();
-    const writeTextMock = jest.fn().mockResolvedValue(undefined);
+    const mockWriteTextMock = jest.fn().mockResolvedValue(undefined);
 
     Object.defineProperty(navigator, "clipboard", {
       value: {
-        writeText: writeTextMock,
+        writeText: mockWriteTextMock,
       },
       writable: true,
       configurable: true,
@@ -120,7 +120,7 @@ describe("PasswordGeneratorPage", () => {
 
     if (input) await user.click(input);
 
-    expect(writeTextMock).toHaveBeenCalledWith(generatedPassword);
+    expect(mockWriteTextMock).toHaveBeenCalledWith(generatedPassword);
     expect(alertSpy).toHaveBeenCalledWith(
       `Copied the text: ${generatedPassword}`
     );
